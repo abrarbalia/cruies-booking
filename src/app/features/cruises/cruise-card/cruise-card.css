@@ -1,0 +1,118 @@
+.cruise-row {
+  display: grid;
+  grid-template-columns: 340px 1fr 260px;
+  gap: 24px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+  align-items: stretch;
+}
+
+/* IMAGE */
+.cruise-img {
+  position: relative;
+}
+
+.cruise-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SHIP BADGE */
+.ship-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: linear-gradient(45deg,#c850c0,#ff6a88);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* DETAILS */
+.cruise-details {
+  padding: 18px 0;
+}
+
+.cruise-details h3 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.date-route {
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.ports {
+  margin-bottom: 14px;
+}
+
+.offers {
+  display: flex;
+  gap: 20px;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* RIGHT BOX */
+.cruise-price-box {
+  border-left: 1px solid #eee;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.viewing {
+  background: #0a8f3c;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  width: fit-content;
+  font-size: 0.85rem;
+}
+
+.emi {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #a020f0;
+}
+
+.price span {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 400;
+}
+
+/* BUTTONS */
+.book-btn {
+  background: linear-gradient(45deg,#c850c0,#ff6a88);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.view-btn {
+  border: 1px solid #c850c0;
+  color: #c850c0;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}

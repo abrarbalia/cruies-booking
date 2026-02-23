@@ -1,0 +1,81 @@
+<!-- HERO IMAGE -->
+<div class="cruise-hero">
+  <img [src]="cruise.image" class="hero-img">
+
+  <div class="hero-overlay">
+    <div class="hero-text">
+      <div class="nights">{{cruise.nights}} Nights</div>
+      <h1>{{cruise.title}}</h1>
+      <div class="ship">🚢 {{cruise.ship}}</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="detail-container">
+
+  <!-- LEFT CONTENT -->
+  <div class="left">
+
+    <!-- INFO BAR -->
+    <div class="info-bar">
+      <div class="info-item">
+        📅 <span>{{cruise.date}}</span>
+      </div>
+      <div class="info-item">
+        📍 <span>{{cruise.port}}</span>
+      </div>
+      <div class="info-item">
+        ⏱ <span>{{cruise.nights}} Nights</span>
+      </div>
+      <div class="info-item">
+        ⭐ <span>{{cruise.rating}}</span>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="active">Overview</button>
+      <button>Itinerary</button>
+      <button>Amenities</button>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="about">
+      <h3>About This Cruise</h3>
+      <p>{{cruise.description}}</p>
+    </div>
+
+    <!-- CABINS -->
+    <div class="cabins">
+      <h3>Select Your Cabin</h3>
+
+      <div class="cabin" *ngFor="let c of cruise.cabins">
+        <img [src]="c.image">
+        <div class="cabin-info">
+          <h4>{{c.name}}</h4>
+          <div class="features">{{c.features}}</div>
+        </div>
+        <div class="cabin-price">
+          {{c.price}}
+          <span>per person</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT BOOKING -->
+  <div class="booking-box">
+    <div class="price-title">Starting from</div>
+    <div class="main-price">{{cruise.price}}</div>
+    <div class="per">per person</div>
+
+    <button class="select-btn">Select Cabin</button>
+
+    <div class="note">✔ Free cancellation</div>
+  </div>
+
+</div>

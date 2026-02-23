@@ -1,0 +1,17 @@
+<section class="cruise-list-page">
+  <h2>Explore Cruises</h2>
+
+  <app-cruise-card
+    *ngFor="let c of cruises"
+    [title]="c.title"
+    [image]="c.image"
+    [date]="c.date"
+    [route]="c.route"
+    [ports]="c.ports"
+    [offer1]="c.offer1"
+    [offer2]="c.offer2"
+    [price]="c.price"
+    [viewing]="c.viewing">
+  </app-cruise-card>
+
+</section>
