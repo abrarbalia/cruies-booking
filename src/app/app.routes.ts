@@ -20,6 +20,18 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./features/my-booking/my-booking')
 .then(m => m.MyBooking)
+},
+{
+  path: 'offers',
+  loadComponent: () =>
+    import('./features/offers/offers')
+      .then(m => m.Offers)
+},
+{
+  path: 'signin',
+  loadComponent: () =>
+    import('./features/auth/signin/signin').then(m => m.Signin)
 }
+      
       
 ];
