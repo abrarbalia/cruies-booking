@@ -31,7 +31,12 @@ export const routes: Routes = [
   path: 'signin',
   loadComponent: () =>
     import('./features/auth/signin/signin').then(m => m.Signin)
+},
+{
+  path: 'offers/features/kids-sail-free',
+  loadComponent: () =>
+    import('./features/offers/features/offers/kids-sail-free/kids-sail-free').then(
+      m => m.KidsSailFree
+    )
 }
-      
-      
 ];

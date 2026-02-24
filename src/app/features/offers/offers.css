@@ -143,10 +143,10 @@
   }
 
   .promo-hero img,
-  /* .promo-strip img {
+  .promo-strip img {
     width: 100vw;
     height: 10w;       
-  } */
+  }
 
   .card-row.scroll {
     gap: 20px;
