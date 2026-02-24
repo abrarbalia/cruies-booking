@@ -1,0 +1,158 @@
+/* ================== PAGE WRAPPER ================== */
+.offer-wrapper {
+  max-width: 1200px;
+  margin: 50px auto; /* Centered with top-bottom space */
+  padding: 0 20px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ================== BREADCRUMB ================== */
+.breadcrumb {
+  font-size: 14px;
+  color: #666;
+}
+
+.breadcrumb span {
+  color: #9b2c83;
+  font-weight: 600;
+}
+
+/* ================== MAIN ROW ================== */
+.offer-row {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* ================== LEFT CARD ================== */
+.offer-card {
+  width: 380px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.offer-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+/* ================== CARD BODY ================== */
+.offer-card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.offer-card-body .offer-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(90deg, #9b2c83, #e86b5f);
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.offer-card-body .offer-btn:hover {
+  background: linear-gradient(90deg, #e86b5f, #9b2c83);
+  transform: translateY(-2px);
+}
+
+/* ================== RIGHT INFO ================== */
+.offer-info {
+  flex: 1;
+  background: #fff;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.offer-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.offer-info h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 22px;
+  color: #333;
+}
+
+.offer-info h3:first-child {
+  margin-top: 0;
+}
+
+.offer-info p {
+  line-height: 1.7;
+  color: #555;
+}
+
+.offer-info ul {
+  padding-left: 20px;
+  color: #555;
+}
+
+.offer-info li {
+  margin-bottom: 10px;
+}
+
+/* ================== EXPLORE SECTION ================== */
+.explore-section {
+  margin-top: 60px;
+  padding: 40px;
+  background: #fff3ef;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.explore-section h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #9b2c83;
+}
+
+.explore-section p {
+  color: #666;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 900px) {
+  .offer-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .offer-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .offer-info {
+    width: 100%;
+  }
+}

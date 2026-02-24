@@ -13,5 +13,30 @@ export const routes: Routes = [
     loadComponent: () =>
         import('./features/auth/login/login')
             .then(c => c.Login)
+},
+{
+   
+  path: 'my-bookings',
+  loadComponent: () =>
+    import('./features/my-booking/my-booking')
+.then(m => m.MyBooking)
+},
+{
+  path: 'offers',
+  loadComponent: () =>
+    import('./features/offers/offers')
+      .then(m => m.Offers)
+},
+{
+  path: 'signin',
+  loadComponent: () =>
+    import('./features/auth/signin/signin').then(m => m.Signin)
+},
+{
+  path: 'offers/features/kids-sail-free',
+  loadComponent: () =>
+    import('./features/offers/features/offers/kids-sail-free/kids-sail-free').then(
+      m => m.KidsSailFree
+    )
 }
 ];
