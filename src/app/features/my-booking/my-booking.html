@@ -1,0 +1,37 @@
+<section class="booking-container">
+
+  <div class="booking-header">
+    <h2>My Bookings</h2>
+    <p>View and manage your cruise reservations</p>
+  </div>
+
+  <div class="booking-search">
+    <input
+      type="text"
+      placeholder="Enter Booking ID"
+      [value]="bookingId()"
+      (input)="bookingId.set($any($event.target).value)"
+    />
+    <button (click)="searchBooking()">Search</button>
+  </div>
+
+  <!-- Booking Card -->
+  <div class="booking-card" *ngIf="bookingFound()">
+
+    <h3>Caribbean Escape</h3>
+
+    <div class="booking-info">
+      <p><strong>Booking ID:</strong> {{ bookingId() }}</p>
+      <p><strong>Guest Name:</strong> John Doe</p>
+      <p><strong>Departure:</strong> 12 March 2026</p>
+      <p><strong>Status:</strong> Confirmed</p>
+    </div>
+
+    <div class="booking-actions">
+      <a routerLink="/checkin" class="btn-primary">Check-In</a>
+      <button class="btn-outline">Cancel Booking</button>
+    </div>
+
+  </div>
+
+</section>

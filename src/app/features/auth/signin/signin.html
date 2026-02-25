@@ -1,0 +1,53 @@
+<section class="signin-container">
+
+  <!-- Background Video -->
+  <video autoplay muted loop class="signin-bg-video">
+    <source src="https://th.bing.com/th?&id=OVP.UEFllbKtcxmnzMU1NVX4JgEsDh&w=321&h=180&c=7&pid=2.1&rs=1" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Sign-Up Card -->
+  <div class="signin-card">
+
+    <h2>Sign Up</h2>
+    <p>Create a new account to book your dream cruise</p>
+
+    <input
+  type="text"
+  placeholder="First Name"
+  [value]="firstName()"
+  (input)="firstName.set($any($event.target).value)"
+  autocomplete="off"
+/>
+
+<input
+  type="text"
+  placeholder="Last Name"
+  [value]="lastName()"
+  (input)="lastName.set($any($event.target).value)"
+  autocomplete="off"
+/>
+
+<input
+  type="email"
+  placeholder="Email"
+  [value]="email()"
+  (input)="email.set($any($event.target).value)"
+  autocomplete="off"
+/>
+
+<input
+  type="password"
+  placeholder="Password"
+  [value]="password()"
+  (input)="password.set($any($event.target).value)"
+  autocomplete="new-password"  >
+    <button (click)="signUp()">Sign Up</button>
+
+    <p class="signin-link">
+      Already have an account? <a routerLink="/login">Sign In</a>
+    </p>
+
+  </div>
+
+</section>

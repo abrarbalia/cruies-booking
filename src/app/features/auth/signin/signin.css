@@ -1,0 +1,101 @@
+/* Container */
+.signin-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Background Video */
+.signin-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.5); /* Darken video for form readability */
+}
+
+/* Card */
+.signin-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Typography */
+.signin-card h2 {
+  margin-bottom: 10px;
+  color: #023047;
+}
+
+.signin-card p {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Inputs */
+.signin-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Button */
+.signin-card button {
+  width: 100%;
+  padding: 12px;
+  background: #0077b6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.signin-card button:hover {
+  background: #005f8f;
+}
+
+/* Sign In Link */
+.signin-link {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.signin-link a {
+  color: #0077b6;
+  text-decoration: none;
+}
+
+.signin-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .signin-card {
+    padding: 30px 20px;
+  }
+}
