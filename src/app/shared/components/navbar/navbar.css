@@ -177,3 +177,86 @@
     }
   }
 }
+
+/* ===== PROFILE STYLES ADD ===== */
+.profile {
+  cursor: pointer;
+
+  .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: 30px;
+    transition: 0.3s;
+
+    &:hover {
+      background: rgba(255,255,255,0.15);
+    }
+  }
+
+  .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#ff6b6b,#a8e6cf);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .profile-name {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    list-style: none;
+    padding: 8px 0;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: 0.25s;
+
+    &.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .profile-header {
+      padding: 10px 16px;
+      font-weight: 600;
+      color: #0a4d68;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dropdown-link {
+      display: block;
+      padding: 10px 16px;
+      color: #0a4d68;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        background: #f2f6f8;
+      }
+
+      &.logout {
+        color: #e74c3c;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+
