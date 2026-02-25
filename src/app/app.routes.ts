@@ -32,6 +32,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/cruises/cruise-detail/cruise-detail')
         .then(c => c.CruiseDetailComponent)
+  },
+  {
+    path: 'offers/kids-sail-free',
+    loadComponent: () =>
+      import('./features/offers/kids-sail-free/kids-sail-free')
+        .then(c => c.KidsSailFree)
   }
 
 ];
