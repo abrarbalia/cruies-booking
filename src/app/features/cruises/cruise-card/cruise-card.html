@@ -1,26 +1,40 @@
-<div class="cruise-card">
+<div class="cruise-row">
 
-  <img [src]="image" alt="cruise">
+  <!-- IMAGE -->
+  <div class="cruise-img">
+    <img [src]="image" alt="cruise">
+    <div class="ship-badge">available</div>
+  </div>
 
-  <div class="cruise-info">
+  <!-- DETAILS -->
+  <div class="cruise-details">
+    <h3>{{ title }}</h3>
+
+    <div class="date-route">
+      {{ date }} • {{ route }}
+    </div>
+
+    <div class="ports">
+      {{ ports }}
+    </div>
+
+    <div class="offers">
+
+    </div>
+  </div>
+
+  <!-- PRICE BOX -->
+  <div class="cruise-price-box">
     
-    <div>
-      <div class="cruise-title">{{title}}</div>
-      <div class="cruise-date">{{date}}</div>
-      <div class="cruise-route">{{route}}</div>
+
+    <div class="price">
+      {{ price }} <span>/person</span>
     </div>
 
-    <div class="price-row">
-      <div class="cruise-price">
-        {{price}} <span>/month</span>
-      </div>
-
-      <div class="btn-group">
-        <button class="book-btn">Book Now</button>
-        <button class="view-btn">View</button>
-      </div>
-    </div>
-
+    <button class="book-btn">Book Now</button>
+    <button class="view-btn" (click)="viewCruise()">
+      View
+    </button>
   </div>
 
 </div>

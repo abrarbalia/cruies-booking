@@ -1,17 +1,17 @@
-<section class="cruise-list-page">
-  <h2>Explore Cruises</h2>
 
+<section class="cruise-list-page">
+  <h2>Explore Cruises</h2> <!-- Loading -->
+<div *ngIf="!loading && cruises.length > 0">
   <app-cruise-card
     *ngFor="let c of cruises"
+    [id]="c.id"
     [title]="c.title"
     [image]="c.image"
-    [date]="c.date"
+    [date]="c.month"
     [route]="c.route"
-    [ports]="c.ports"
-    [offer1]="c.offer1"
-    [offer2]="c.offer2"
-    [price]="c.price"
-    [viewing]="c.viewing">
+    [ports]="c.port"
+    [price]="c.price">
   </app-cruise-card>
-
+</div>
+  <div *ngIf="!loading && cruises.length === 0" class="no-results"> ❌ No Cruises Available for Selected Filters </div>
 </section>

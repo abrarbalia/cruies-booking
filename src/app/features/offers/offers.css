@@ -145,7 +145,8 @@
   .promo-hero img,
   .promo-strip img {
     width: 100vw;
-    height: 10w;       
+    height: 90px;
+    object-fit: cover;  
   }
 
   .card-row.scroll {

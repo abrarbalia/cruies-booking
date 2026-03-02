@@ -1,25 +1,23 @@
 /* =========================
-   GLOBAL LAYOUT
+   GLOBAL
 ========================= */
-.detail-container {
-  display: flex;
-  gap: 40px;
-  padding: 40px 8%;
-  background: #f6f8fb;
+body {
+  margin: 0;
   font-family: "Poppins", sans-serif;
+  background: #f4f7fb;
+  color: #333;
 }
 
-.left {
-  flex: 3;
+h3 {
+  margin-bottom: 15px;
 }
 
-.booking-box {
-  flex: 1;
-}
-
+/* =========================
+   HERO SECTION
+========================= */
 .cruise-hero {
   position: relative;
-  height: 420px;
+  height: 480px;
   overflow: hidden;
 }
 
@@ -32,10 +30,10 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.2));
   display: flex;
   align-items: flex-end;
-  padding: 40px 8%;
+  padding: 60px 8%;
 }
 
 .hero-text {
@@ -43,160 +41,40 @@
 }
 
 .hero-text h1 {
-  font-size: 42px;
-  margin: 6px 0;
-}
-
-.nights {
-  background: rgba(255,255,255,0.2);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-}
-
-/* MAP */
-.route-section {
-  padding: 50px 8%;
-  background: white;
-}
-
-.map-box {
-  width: 100%;
-  height: 420px;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-}
-
-/* LAYOUT */
-.detail-container {
-  display: flex;
-  gap: 40px;
-  padding: 40px 8%;
-  background: #f6f8fb;
-}
-
-.left { flex: 3; }
-.booking-box { flex: 1; }
-
-/* INFO */
-.info-bar {
-  display: flex;
-  gap: 30px;
-  background: white;
-  padding: 18px 24px;
-  border-radius: 12px;
-  margin-top: -30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-}
-
-/* TABS */
-.tabs {
-  display: flex;
-  gap: 30px;
-  margin-top: 30px;
-  border-bottom: 2px solid #eee;
-}
-
-.tabs button {
-  background: none;
-  border: none;
-  padding: 12px 0;
-  cursor: pointer;
-  color: #666;
-}
-
-.tabs button.active {
-  color: #0d6efd;
-  font-weight: 600;
-  border-bottom: 3px solid #0d6efd;
-}
-
-/* ITINERARY */
-.itinerary .day {
-  border-left: 3px solid #0d6efd;
-  padding-left: 20px;
-  margin: 16px 0;
-}
-
-.day-title {
-  font-weight: 600;
-  color: #0d6efd;
-}
-
-/* AMENITIES */
-.amenities {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
-}
-
-.amenity {
-  background: white;
-  padding: 14px;
-  border-radius: 10px;
-}
-
-/* CABINS */
-.cabin {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: white;
-  padding: 16px;
-  border-radius: 14px;
-  margin-bottom: 16px;
-}
-
-.cabin img {
-  width: 120px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.cabin-price {
-  margin-left: auto;
+  font-size: 46px;
+  margin: 10px 0;
   font-weight: 700;
-  color: #0d6efd;
-}
-
-/* BOOKING */
-.booking-box {
-  background: white;
-  border-radius: 16px;
-  padding: 28px;
-  height: fit-content;
-}
-
-.main-price {
-  font-size: 36px;
-  font-weight: 700;
-  color: #0d6efd;
-}
-
-.select-btn {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: #0d6efd;
-  color: white;
-  cursor: pointer;
 }
 
 .ship {
+  font-size: 16px;
   opacity: 0.9;
 }
 
 .nights {
+  display: inline-block;
   background: rgba(255,255,255,0.2);
   backdrop-filter: blur(6px);
-  padding: 6px 14px;
-  border-radius: 20px;
-  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 25px;
   font-size: 14px;
-  margin-bottom: 10px;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+.detail-container {
+  display: flex;
+  gap: 50px;
+  padding: 50px 8%;
+}
+
+.left {
+  flex: 3;
+}
+
+.booking-box {
+  flex: 1;
 }
 
 /* =========================
@@ -204,17 +82,17 @@
 ========================= */
 .info-bar {
   display: flex;
-  gap: 30px;
-  background: white;
-  padding: 18px 24px;
-  border-radius: 12px;
-  margin-top: -30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  gap: 25px;
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 16px;
+  margin-top: -60px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
 }
 
 .info-item {
   font-weight: 500;
-  color: #444;
+  color: #555;
 }
 
 /* =========================
@@ -222,8 +100,8 @@
 ========================= */
 .tabs {
   display: flex;
-  gap: 30px;
-  margin-top: 30px;
+  gap: 35px;
+  margin-top: 40px;
   border-bottom: 2px solid #eee;
 }
 
@@ -231,9 +109,10 @@
   background: none;
   border: none;
   font-size: 16px;
-  padding: 12px 0;
+  padding: 14px 0;
   cursor: pointer;
-  color: #666;
+  color: #777;
+  font-weight: 500;
   position: relative;
   transition: 0.3s;
 }
@@ -262,11 +141,11 @@
    TAB CONTENT
 ========================= */
 .tab-content {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .about p {
-  line-height: 1.7;
+  line-height: 1.8;
   color: #555;
 }
 
@@ -274,32 +153,31 @@
    ITINERARY
 ========================= */
 .itinerary .day {
-  display: flex;
-  gap: 20px;
-  padding: 16px 0;
-  border-left: 3px solid #0d6efd;
-  padding-left: 20px;
   position: relative;
+  border-left: 3px solid#1c8fa3;
+  padding-left: 22px;
+  margin-bottom: 20px;
 }
 
 .itinerary .day::before {
   content: "";
   width: 12px;
   height: 12px;
-  background: #0d6efd;
+  background: #1c8fa3;
   border-radius: 50%;
   position: absolute;
   left: -7px;
-  top: 22px;
+  top: 6px;
 }
 
 .day-title {
   font-weight: 600;
-  color: #0d6efd;
+  color: #1c8fa3;
+  margin-bottom: 5px;
 }
 
 .day-desc {
-  color: #555;
+  color: #666;
 }
 
 /* =========================
@@ -308,146 +186,223 @@
 .amenities {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
+  gap: 18px;
 }
 
 .amenity {
-  background: white;
-  padding: 14px 16px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  font-weight: 500;
-  color: #444;
-  transition: 0.2s;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  transition: 0.3s;
 }
 
 .amenity:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+}
+/* =========================
+   PAGE BACKGROUND
+========================= */
+body {
+  background: #f2f6f7;
+  font-family: "Poppins", sans-serif;
 }
 
 /* =========================
    CABINS
 ========================= */
-.cabins {
-  margin-top: 40px;
+.section-title {
+  margin: 40px 0 20px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.cabin {
+.cabin-card {
   display: flex;
   align-items: center;
-  gap: 20px;
-  background: white;
-  padding: 16px;
+  background: #ffffff;
   border-radius: 14px;
-  margin-bottom: 16px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
-  transition: 0.25s;
+  padding: 16px;
+  margin-bottom: 18px;
+  border: 2px solid #e5eff2;
+  transition: 0.3s ease;
+  cursor: pointer;
 }
 
-.cabin:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+.cabin-card:hover {
+  border-color: #1c8fa3;
 }
 
-.cabin img {
-  width: 120px;
-  height: 80px;
+.cabin-card.selected {
+  border-color: #1c8fa3;
+  background: #f0fbfd;
+}
+
+.cabin-left img {
+  width: 160px;
+  height: 110px;
   object-fit: cover;
   border-radius: 10px;
 }
 
-.cabin-info h4 {
+.cabin-middle {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.cabin-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cabin-top h4 {
   margin: 0;
-}
-
-.features {
-  font-size: 14px;
-  color: #777;
-}
-
-.cabin-price {
-  margin-left: auto;
-  font-weight: 700;
-  color: #0d6efd;
   font-size: 18px;
 }
 
-.cabin-price span {
-  display: block;
+.selected-badge {
+  background: #1c8fa3;
+  color: white;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 20px;
+}
+
+.cabin-meta {
+  font-size: 13px;
+  color: #777;
+  margin: 6px 0;
+}
+
+.feature-tags {
+  margin-top: 8px;
+}
+
+.feature-tags span {
+  background: #eef5f7;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  margin-right: 6px;
+}
+
+.cabin-right {
+  text-align: right;
+  min-width: 140px;
+}
+
+.cabin-right .price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1c8fa3;
+}
+
+.cabin-right span {
   font-size: 12px;
   color: #777;
-  font-weight: 400;
 }
 
 /* =========================
    BOOKING BOX
 ========================= */
 .booking-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   position: sticky;
   top: 30px;
-  height: fit-content;
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  height: 40%;
 }
 
-.price-title {
+.price-label {
   color: #777;
+  font-size: 14px;
 }
 
 .main-price {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 700;
-  margin: 10px 0;
-  color: #0d6efd;
+  color: #1c8fa3;
+  margin: 6px 0;
 }
 
 .per {
   color: #777;
+  font-size: 14px;
   margin-bottom: 20px;
 }
 
-.select-btn {
+.selected-summary {
+  background: #eaf6f8;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.selected-summary .label {
+  font-size: 13px;
+  color: #777;
+}
+
+.selected-summary .value {
+  font-weight: 600;
+}
+
+.price-small {
+  color: #1c8fa3;
+  font-size: 14px;
+}
+
+.book-btn {
   width: 100%;
   padding: 14px;
+  background: #1c8fa3;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, #0d6efd, #4da3ff);
   color: white;
-  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.3s;
 }
 
-.select-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(13,110,253,0.3);
+.book-btn:hover {
+  background: #157a8c;
 }
 
-.note {
-  margin-top: 12px;
+.extra-info {
+  margin-top: 15px;
   font-size: 13px;
-  color: #28a745;
+  color: #777;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
-@media (max-width: 900px) {
+@media(max-width: 900px){
+  .cabin-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cabin-left img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .cabin-right {
+    text-align: left;
+    margin-top: 10px;
+  }
+
   .detail-container {
     flex-direction: column;
-    padding: 30px 5%;
   }
 
   .booking-box {
     position: relative;
     top: 0;
-  }
-
-  .hero-text h1 {
-    font-size: 28px;
+    margin-top: 30px;
   }
 }
