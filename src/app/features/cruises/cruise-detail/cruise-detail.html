@@ -1,0 +1,159 @@
+<!-- ================= HERO SECTION ================= -->
+<section class="cruise-hero" *ngIf="cruise">
+  <img [src]="cruise.image" class="hero-img" alt="{{cruise.title}}">
+
+  <div class="hero-overlay">
+    <div class="hero-text">
+      <span class="nights">{{cruise.duration}}</span>
+      <h1>{{cruise.title}}</h1>
+      <p class="ship">🚢 Departing from {{cruise.port}}</p>
+    </div>
+  </div>
+</section><br>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+<section class="detail-container" *ngIf="cruise">
+
+  <!-- LEFT SIDE -->
+  <div class="left">
+
+    <!-- INFO BAR -->
+    <div class="info-bar">
+      <div class="info-item">📅 <strong>{{cruise.month}}</strong></div>
+      <div class="info-item">📍 <strong>{{cruise.port}}</strong></div>
+      <div class="info-item">🗺 <strong>{{cruise.route}}</strong></div>
+      <div class="info-item">⏱ <strong>{{cruise.duration}}</strong></div>
+    </div>
+
+
+    <!-- ================= TABS ================= -->
+    <div class="tabs">
+      <button [class.active]="activeTab==='overview'" (click)="setTab('overview')">
+        Overview
+      </button>
+
+      <button [class.active]="activeTab==='itinerary'" (click)="setTab('itinerary')">
+        Itinerary
+      </button>
+
+      <button [class.active]="activeTab==='amenities'" (click)="setTab('amenities')">
+        Amenities
+      </button>
+    </div>
+
+
+    <!-- ================= TAB CONTENT ================= -->
+    <div class="tab-content">
+
+      <!-- OVERVIEW -->
+      <div *ngIf="activeTab==='overview'" class="about">
+        <h3>About This Cruise</h3>
+        <p>{{cruise.overview}}</p>
+      </div>
+
+
+      <!-- ITINERARY -->
+      <div *ngIf="activeTab==='itinerary'" class="itinerary">
+        <h3>Cruise Itinerary</h3>
+
+        <div class="day" *ngFor="let day of cruise.itinerary; let i=index">
+
+          <div class="day-title">
+            Day {{i+1}}
+          </div>
+
+          <div class="day-desc">
+            {{day}}
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- AMENITIES -->
+      <div *ngIf="activeTab==='amenities'" class="amenities">
+        <div class="amenity" *ngFor="let a of cruise.facilities">
+          ✔ {{a}}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cabins-container" *ngIf="cruise.cabins?.length">
+      <h3 class="section-title">Select Your Cabin</h3>
+
+      <div class="cabin-card" *ngFor="let c of cruise.cabins" [class.selected]="selectedCabin?.type === c.type"
+        (click)="selectCabin(c)">
+
+        <!-- LEFT IMAGE -->
+        <div class="cabin-left">
+          <img [src]="c.imageUrl || 'assets/default-cabin.jpg'" alt="{{c.type}}">
+        </div>
+
+        <!-- MIDDLE INFO -->
+        <div class="cabin-middle">
+          <div class="cabin-top">
+            <h4>{{c.type}}</h4>
+            <span class="selected-badge" *ngIf="selectedCabin?.type === c.type">
+              Selected
+            </span>
+          </div>
+
+          <!-- <div class="cabin-meta">
+            👥 Up to 2 guests
+          </div> -->
+
+          <div class="feature-tags">
+            <span *ngFor="let f of c.features">
+              {{f}}
+            </span>
+          </div>
+        </div>
+
+        <!-- RIGHT PRICE -->
+        <div class="cabin-right">
+          <div class="price">
+            ₹ {{ cruise.price * c.priceMultiplier | number }}
+          </div>
+          <span>per person</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= RIGHT BOOKING BOX ================= -->
+  <aside class="booking-box">
+
+  <div class="booking-price">
+    <div class="price-label">Starting from</div>
+    <div class="main-price">
+      ₹ {{ finalPrice | number }}
+    </div>
+    <div class="per">per person</div>
+  </div>
+
+  <div class="selected-summary">
+    <div class="label">Selected Cabin</div>
+    <div class="value">
+      {{selectedCabin?.type || 'Interior'}}
+    </div>
+    <div class="value price-small">
+      ₹ {{ finalPrice | number }} / person
+    </div>
+  </div>
+
+  <button class="book-btn">
+    Book Now →
+  </button>
+
+  <div class="extra-info">
+  
+    ✔ Free cancellation up to 48hrs before
+  </div>
+
+</aside>
+
+</section>

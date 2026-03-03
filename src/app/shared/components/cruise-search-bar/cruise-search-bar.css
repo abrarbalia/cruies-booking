@@ -1,0 +1,136 @@
+/* Container: Modern horizontal strip */
+.cruise-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  gap: 15px;
+  max-width: 1200px;
+  margin: 20px auto;
+  border: 1px solid #eee;
+  
+}
+
+/* Individual Item Styling */
+.search-item {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-item label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #1a2b48;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* Styled Select Dropdowns */
+.search-item select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #dce0e0;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  font-size: 0.95rem;
+  color: #444;
+  cursor: pointer;
+  appearance: none; /* Removes default arrow to custom style it later if needed */
+  transition: all 0.2s ease;
+}
+
+.search-item select:focus {
+  outline: none;
+  border-color: #0066cc;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* The Search Button */
+.search-btn {
+  background: #25bce2; /* A bright "Action" orange to contrast the navy */
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s;
+  height: 48px; /* Matches the height of the select boxes */
+  align-self: flex-end;
+}
+
+.search-btn:hover {
+  background: #e85a28;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.search-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive: Stacks on mobile */
+@media (max-width: 768px) {
+  .cruise-search-bar {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .search-item, .search-btn {
+    width: 100%;
+    flex: none;
+  }
+}
+/* Styling the Select box itself */
+select {
+  appearance: none; 
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 2px solid #e0e6ed;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1a2b48;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* Hover and Focus - Makes the box pop */
+select:hover {
+  border-color: #0066cc;
+}
+
+select:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+}
+
+/* Styling the Options (Supported by most modern desktop browsers) */
+select option {
+  padding: 12px;           /* Adds space inside the list */
+  background-color: #fff;  /* Clean background */
+  color: #1a2b48;          /* Matching text color */
+  font-size: 14px;
+}
+
+/* Styling the "Select Nights" placeholder */
+select option:first-child {
+  color: #999;
+  font-style: italic;
+}
+
+/* Optional: Adding a hover background for options (Firefox specific) */
+select option:hover {
+  background-color: #0066cc !important;
+  color: white !important;
+}

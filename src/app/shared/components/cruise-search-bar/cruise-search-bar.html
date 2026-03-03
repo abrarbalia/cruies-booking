@@ -1,0 +1,62 @@
+<div class="search-container">
+  <div class="cruise-search-bar">
+
+    <!-- Destination -->
+    <div class="search-item">
+      <label>Destination</label>
+      <div class="select-wrapper">
+        <select [(ngModel)]="selectedDestination">
+          <option value="">Select Destination</option>
+          <option *ngFor="let d of destinations" [value]="d">
+            {{ d }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Port -->
+    <div class="search-item">
+      <label>Port</label>
+      <div class="select-wrapper">
+        <select [(ngModel)]="selectedPort">
+          <option value="">Select Port</option>
+          <option *ngFor="let p of ports" [value]="p">
+            {{ p }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Month -->
+    <div class="search-item">
+      <label>Month</label>
+      <div class="select-wrapper">
+        <select [(ngModel)]="selectedMonth">
+          <option value="">Select Month</option>
+          <option *ngFor="let m of months" [value]="m">
+            {{ m }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Nights -->
+    <div class="search-item">
+      <label>Nights</label>
+      <div class="select-wrapper">
+        <select [(ngModel)]="selectedNights">
+          <option [ngValue]="null">Select Nights</option>
+          <option *ngFor="let n of nights" [ngValue]="n">
+            {{ n }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <button class="search-btn" (click)="search()">
+      Search Cruises
+    </button>
+
+  </div>
+</div>

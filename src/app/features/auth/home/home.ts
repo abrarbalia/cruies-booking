@@ -1,30 +1,39 @@
-import { AfterViewInit, Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CruiseSearchBarComponent } from '../../../shared/components/cruise-search-bar/cruise-search-bar';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule, CruiseSearchBarComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
-export class Home implements AfterViewInit {
+export class HomeComponent implements AfterViewInit {
 
   @ViewChild('heroVideo') heroVideo!: ElementRef<HTMLVideoElement>;
   @ViewChild('experienceWrapper') experienceWrapper!: ElementRef<HTMLDivElement>;
 
   ngAfterViewInit() {
-    const video = this.heroVideo.nativeElement;
-    video.muted = true;
+    if (this.heroVideo) {
+      const video = this.heroVideo.nativeElement;
+      video.muted = true;
 
-    setTimeout(() => {
-      video.play().catch(() => {});
-    }, 100);
+      setTimeout(() => {
+        video.play().catch(() => {});
+      }, 100);
+    }
   }
 
   scrollExperience(direction: number) {
-    const container = this.experienceWrapper.nativeElement;
+    if (this.experienceWrapper) {
+      const container = this.experienceWrapper.nativeElement;
 
-    container.scrollBy({
-      left: direction * 350,
-      behavior: 'smooth'
-    });
+      container.scrollBy({
+        left: direction * 350,
+        behavior: 'smooth'
+      });
+    }
   }
+
 }

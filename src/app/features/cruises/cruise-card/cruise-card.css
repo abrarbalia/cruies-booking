@@ -1,0 +1,167 @@
+/* Container styling */
+.cruise-row {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease;
+}
+
+.cruise-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Image section */
+.cruise-img {
+  position: relative;
+  width: 300px;
+  min-width: 300px;
+}
+
+.cruise-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ship-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(26, 43, 72, 0.85);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Middle Details Section */
+.cruise-details {
+  flex: 2;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cruise-details h3 {
+  margin: 0 0 8px 0;
+  color: #1a2b48;
+  font-size: 1.5rem;
+}
+
+.date-route {
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.ports {
+  color: #777;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.offers {
+  display: flex;
+  gap: 10px;
+}
+
+.offers div {
+  background: #f0f7ff;
+  color: #0066cc;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px dashed #0066cc;
+}
+
+/* Right Price Box */
+.cruise-price-box {
+  flex: 1;
+  padding: 24px;
+  background: #f9f9f9;
+  border-left: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.viewing {
+  font-size: 0.75rem;
+  color: #d9534f;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a2b48;
+  margin-bottom: 15px;
+}
+
+.price span {
+  font-size: 0.9rem;
+  color: #777;
+  font-weight: 400;
+}
+
+/* Buttons */
+.book-btn, .view-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+}
+
+.book-btn {
+  background: #0066cc;
+  color: white;
+}
+
+.book-btn:hover {
+  background: #004d99;
+}
+
+.view-btn {
+  background: transparent;
+  color: #0066cc;
+  border: 1px solid #0066cc;
+}
+
+.view-btn:hover {
+  background: #f0f7ff;
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 768px) {
+  .cruise-row {
+    flex-direction: column;
+  }
+  .cruise-img {
+    width: 100%;
+    height: 200px;
+  }
+  .cruise-price-box {
+    border-left: none;
+    border-top: 1px solid #eee;
+  }
+}

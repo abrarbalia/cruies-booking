@@ -1,0 +1,40 @@
+<div class="cruise-row">
+
+  <!-- IMAGE -->
+  <div class="cruise-img">
+    <img [src]="image" alt="cruise">
+    <div class="ship-badge">available</div>
+  </div>
+
+  <!-- DETAILS -->
+  <div class="cruise-details">
+    <h3>{{ title }}</h3>
+
+    <div class="date-route">
+      {{ date }} • {{ route }}
+    </div>
+
+    <div class="ports">
+      {{ ports }}
+    </div>
+
+    <div class="offers">
+
+    </div>
+  </div>
+
+  <!-- PRICE BOX -->
+  <div class="cruise-price-box">
+    
+
+    <div class="price">
+      {{ price }} <span>/person</span>
+    </div>
+
+    <button class="book-btn">Book Now</button>
+    <button class="view-btn" (click)="viewCruise()">
+      View
+    </button>
+  </div>
+
+</div>

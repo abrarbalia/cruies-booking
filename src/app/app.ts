@@ -10,6 +10,10 @@ import {  OnboardCredit } from './features/offers/features/offers/onboard-credit
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, Navbar, Footer,MyBooking,KidsSailFree,SecondGuestFree,OnboardCredit],
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, Navbar, Footer ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

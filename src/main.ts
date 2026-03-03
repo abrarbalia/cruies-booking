@@ -1,6 +1,15 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideRouter, withRouterConfig } from '@angular/router';
+import { routes } from './app/app.routes';   // ✅ IMPORTANT
 import { App } from './app/app';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(App, {
+  providers: [
+    provideRouter(
+      routes,
+      withRouterConfig({
+        onSameUrlNavigation: 'reload'
+      })
+    )
+  ]
+}).catch(err => console.error(err));
