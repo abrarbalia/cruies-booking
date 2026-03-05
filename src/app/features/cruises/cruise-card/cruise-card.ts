@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./cruise-card.css']
 })
 
-export class CruiseCardComponent {
-@Input() id!: string;
+export class CruiseCard {
+  @Input() id!: string;
 
-constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-viewCruise() {
-  this.router.navigate(['/cruises-detail', this.id]);
-}
+  viewCruise() {
+    this.router.navigate(['/cruises-detail', this.id]);
+  }
   @Input() title!: string;
   @Input() image!: string;
   @Input() date!: string;
@@ -24,5 +24,7 @@ viewCruise() {
   @Input() offer2!: string;
   @Input() price!: string;
   @Input() viewing!: number;
-
+  goToBooking() {
+  this.router.navigate(['/booking', this.id]);
+}
 }

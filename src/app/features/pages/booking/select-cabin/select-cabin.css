@@ -1,0 +1,359 @@
+/* =========================
+   LAYOUT
+========================= */
+.booking-layout {
+  display: flex;
+  gap: 50px;
+  padding: 60px 8%;
+  background: #f5f8fa;
+  min-height: 100vh;
+}
+
+.left {
+  flex: 2;
+}
+
+.summary {
+  flex: 1;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 40px;
+  height: fit-content;
+}
+
+/* =========================
+   TITLES
+========================= */
+.left h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.summary h3 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* =========================
+   CABIN CARD
+========================= */
+/* =========================
+   CABIN LIST CONTAINER
+========================= */
+.cabins-container {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   CABIN CARD (PREMIUM STYLE)
+========================= */
+.cabin-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 2px solid #e8eef2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.cabin-card:hover {
+  border-color: #1c8fa3;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* Selected state */
+.cabin-card.selected {
+  border-color: #1c8fa3;
+  background: #f0fbfd;
+  box-shadow: 0 12px 30px rgba(28,143,163,0.18);
+}
+
+/* =========================
+   LEFT IMAGE
+========================= */
+.cabin-left img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* =========================
+   MIDDLE SECTION
+========================= */
+.cabin-middle {
+  flex: 1;
+}
+
+.cabin-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cabin-top h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Selected badge */
+.selected-badge {
+  background: linear-gradient(135deg, #1c8fa3, #157a8c);
+  color: white;
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Feature tags */
+.feature-tags {
+  margin-top: 12px;
+}
+
+.feature-tags span {
+  display: inline-block;
+  background: #eef5f7;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* =========================
+   RIGHT PRICE SECTION
+========================= */
+.cabin-right {
+  text-align: right;
+  min-width: 150px;
+}
+
+.cabin-right .price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1c8fa3;
+}
+
+.cabin-right span {
+  font-size: 13px;
+  color: #777;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+
+  .cabin-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cabin-left img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .cabin-right {
+    text-align: left;
+    margin-top: 10px;
+  }
+}
+
+.cabin-card:hover {
+  border-color: #1c8fa3;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.cabin-card.selected {
+  border-color: #1c8fa3;
+  background: #f0fbfd;
+  box-shadow: 0 10px 25px rgba(28,143,163,0.15);
+}
+
+.cabin-card h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cabin-card p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.cabin-card .price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1c8fa3;
+}
+
+/* =========================
+   PASSENGER SELECT
+========================= */
+.passenger-select {
+  margin-top: 30px;
+}
+
+.passenger-select label {
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.passenger-select select {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.passenger-select select:focus {
+  border-color: #1c8fa3;
+}
+
+/* =========================
+   SUMMARY BOX
+========================= */
+.cruise-info h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ship {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.info-block label {
+  color: #777;
+  font-size: 12px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.total {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1c8fa3;
+  text-align: right;
+  margin: 15px 0 20px;
+}
+
+/* =========================
+   CONTINUE BUTTON
+========================= */
+.summary button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1c8fa3, #157a8c);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.summary button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(28,143,163,0.3);
+}
+
+.summary button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .booking-layout {
+    flex-direction: column;
+  }
+
+  .summary {
+    position: relative;
+    top: 0;
+    margin-top: 30px;
+  }
+}
+
+.passenger-form {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f9fbfc;
+  border-radius: 12px;
+}
+
+.passenger-card {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.passenger-card input,
+.passenger-card select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1c8fa3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background: #157a8a;
+}

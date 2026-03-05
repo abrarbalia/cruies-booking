@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { CruiseService } from '../../../services/cruise.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cruise-detail',
   standalone: true,
@@ -10,7 +10,7 @@ import { CruiseService } from '../../../services/cruise.service';
   templateUrl: './cruise-detail.html',
   styleUrls: ['./cruise-detail.css']
 })
-export class CruiseDetailComponent implements OnInit {
+export class CruiseDetail implements OnInit {
 
   activeTab: string = 'overview';
   cruise: any;
@@ -20,10 +20,12 @@ export class CruiseDetailComponent implements OnInit {
   selectedCabin: any = null;
   finalPrice: number = 0;
 
-  constructor(
-    private route: ActivatedRoute,
-    private cruiseService: CruiseService
-  ) {}
+ constructor(
+  private route: ActivatedRoute,
+  private cruiseService: CruiseService,
+  private router: Router
+) {}
+
 
   setTab(tab: string) {
     this.activeTab = tab;
@@ -52,5 +54,9 @@ export class CruiseDetailComponent implements OnInit {
     this.selectedCabin = cabin;
     this.finalPrice = this.cruise.price * cabin.priceMultiplier;
   }
+
+    goToBooking() {
+  this.router.navigate(['/booking', this.cruise.id]);
+}
 
 }

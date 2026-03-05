@@ -1,6 +1,4 @@
-/* =========================
-   FULL-WIDTH BANNERS WITHOUT CROPPING
-========================= */
+
 .promo-hero,
 .promo-strip {
   width: 100vw;    
@@ -11,7 +9,8 @@
 .promo-hero img,
 .promo-strip img {
   width: 100vw;    
-  height: auto;    /* preserve original image height */
+  height: 80vh;   
+  object-fit: cover;
   display: block;  
 }
 
@@ -162,4 +161,4 @@
   .offer-card img {
     height: 160px;
   }
-}
+} 
