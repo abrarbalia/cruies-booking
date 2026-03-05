@@ -1,0 +1,62 @@
+<div *ngIf="loading" class="loading">
+    Preparing your ticket...
+</div>
+
+<div *ngIf="!loading && booking" class="ticket-wrapper">
+
+    <div class="success-banner">
+        🎉 Booking Confirmed!
+    </div>
+
+    <div class="ticket-card">
+
+        <div class="header">
+            <h2>Ocean Crown Cruise Ticket</h2>
+            <div class="status confirmed">
+                {{ booking.status || 'Confirmed' }}
+            </div>
+        </div>
+
+        <div class="reference">
+            Booking Reference:
+            <strong>{{ booking.reference }}</strong>
+        </div>
+
+        <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" class="qr-code" />
+
+        <hr>
+
+        <h3>{{ booking.cruise.title }}</h3>
+        <p>{{ booking.cruise.ship }}</p>
+
+        <p><strong>Port:</strong> {{ booking.cruise.port }}</p>
+        <p><strong>Date:</strong> {{ booking.cruise.date }}</p>
+        <p><strong>Duration:</strong> {{ booking.cruise.duration }}</p>
+
+        <hr>
+
+        <h4>Passengers</h4>
+
+        <div *ngFor="let p of booking.passengers; let i = index">
+            {{ i + 1 }}.
+            {{ p.firstName }} {{ p.lastName }}
+            — Passport: {{ p.passport }}
+        </div>
+
+        <hr>
+
+        <div class="total">
+            Total: ₹ {{ booking.totalAmount | number }}
+        </div>
+
+        <div class="button-group">
+            <button (click)="printTicket()">Print</button>
+            <button (click)="downloadPDF()">Download PDF</button>
+            <button *ngIf="booking.status === 'Confirmed'" class="cancel-btn" (click)="cancelBooking()">
+                Cancel Booking
+            </button>
+        </div>
+
+    </div>
+
+</div>

@@ -31,7 +31,11 @@
       {{ price }} <span>/person</span>
     </div>
 
-    <button class="book-btn">Book Now</button>
+   <button 
+  class="book-btn"
+  (click)="goToBooking()">
+  Book Now
+</button>
     <button class="view-btn" (click)="viewCruise()">
       View
     </button>

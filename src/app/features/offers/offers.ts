@@ -1,27 +1,41 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { OfferService } from '../../services/offer.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-offers',
+  selector: 'app-offer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './offers.html',
   styleUrls: ['./offers.css']
 })
-export class Offers {
-  @ViewChild('carousel', { static: false }) carousel!: ElementRef;
+export class Offers implements OnInit {
 
-  scrollLeft() {
-    this.carousel.nativeElement.scrollBy({
-      left: -320,   // scroll distance for bigger cards
-      behavior: 'smooth'
-    });
+  offers: any[] = [];
+
+  constructor(private offerService: OfferService) {}
+
+  async ngOnInit() {
+    this.offers = await this.offerService.getOffers();
+    console.log("Offers:", this.offers);
   }
 
-  scrollRight() {
-    this.carousel.nativeElement.scrollBy({
-      left: 320,
-      behavior: 'smooth'
-    });
+  copyCoupon(code: string) {
+    navigator.clipboard.writeText(code);
+    alert(`Coupon ${code} copied!`);
   }
+  scrollLeft(container: HTMLElement) {
+  container.scrollBy({
+    left: -300,
+    behavior: 'smooth'
+  });
+}
+
+scrollRight(container: HTMLElement) {
+  container.scrollBy({
+    left: 300,
+    behavior: 'smooth'
+  });
+}
 }

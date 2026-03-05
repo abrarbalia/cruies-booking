@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CruiseCardComponent } from '../cruise-card/cruise-card';
+import { CruiseCard } from '../cruise-card/cruise-card';
 import { CruiseService } from '../../../services/cruise.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cruise-list',
   standalone: true,
-  imports: [CommonModule, CruiseCardComponent],
+  imports: [CommonModule, CruiseCard],
   templateUrl: './cruise-list.html',
   styleUrls: ['./cruise-list.css']
 })
-export class CruiseListComponent implements OnInit {
+export class CruiseList implements OnInit {
 
   cruises: any[] = [];
   loading = true;

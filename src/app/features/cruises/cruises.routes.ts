@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { CruiseListComponent } from './cruise-list/cruise-list';
-import { CruiseDetailComponent } from './cruise-detail/cruise-detail';
+import { CruiseList } from './cruise-list/cruise-list';
+import { CruiseDetail } from './cruise-detail/cruise-detail';
 
 export const CRUISES_ROUTES: Routes = [
   {
     path: '',
-    component: CruiseListComponent
+    component: CruiseList
   },
   {
     path: ':id',
-    component: CruiseDetailComponent
+    component: CruiseDetail
   }
 ];

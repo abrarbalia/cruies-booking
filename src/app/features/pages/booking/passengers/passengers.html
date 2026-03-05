@@ -1,0 +1,125 @@
+<div class="booking-wrapper">
+
+    <!-- STEP HEADER -->
+    <div class="step-header">
+        <div class="step completed">✔ Select Cabin</div>
+        <div class="step active">Passengers</div>
+        <div class="step">Confirm</div>
+    </div>
+
+    <div class="booking-content">
+
+        <!-- LEFT SIDE FORM -->
+        <div class="form-section">
+
+            <h2>Passenger Details</h2>
+
+            <div *ngFor="let p of passengers; let i = index" class="card">
+                <h4>Passenger {{ i + 1 }} {{ i === 0 ? '(Primary)' : '' }}</h4>
+
+                <div class="grid">
+                    <input placeholder="First Name" [(ngModel)]="passengers[i].firstName" name="firstName{{i}}" />
+
+                    <input placeholder="Last Name" [(ngModel)]="passengers[i].lastName" name="lastName{{i}}" />
+
+                    <input type="date" [(ngModel)]="passengers[i].dob" name="dob{{i}}" />
+
+                    <input placeholder="Nationality" [(ngModel)]="passengers[i].nationality" name="nationality{{i}}" />
+
+                    <input placeholder="Passport Number" [(ngModel)]="passengers[i].passport" name="passport{{i}}" />
+
+                    <input placeholder="Email" [(ngModel)]="passengers[i].email" name="email{{i}}" />
+
+                    <input placeholder="Phone" [(ngModel)]="passengers[i].phone" name="phone{{i}}" />
+                </div>
+            </div>
+
+            <div class="card">
+  <h4>Emergency Contact</h4>
+
+  <div class="grid">
+    <input
+      placeholder="Contact Name"
+      [(ngModel)]="emergencyContact.name"
+      name="emergencyName"
+    />
+
+    <input
+      placeholder="Phone Number"
+      [(ngModel)]="emergencyContact.phone"
+      name="emergencyPhone"
+    />
+
+    <input
+      placeholder="Relationship"
+      [(ngModel)]="emergencyContact.relationship"
+      name="emergencyRelation"
+    />
+  </div>
+</div>
+
+            <div class="card">
+                <h4>Special Requests</h4>
+                <textarea placeholder="Dietary requirements, accessibility needs..."></textarea>
+            </div>
+
+            <div class="action-buttons">
+                <button class="back" (click)="goBack()">
+                    ← Back
+                </button>
+
+                <button class="continue" (click)="continue()">
+                    Continue →
+                </button>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE SUMMARY -->
+        <div class="summary-card">
+
+            <h3>Booking Summary</h3>
+            <p class="title">{{ cruise.title }}</p>
+            <p class="sub">{{ cruise.ship }}</p>
+
+            <strong>{{ cruise.port }}</strong>
+            <strong>{{ cruise.date }}</strong>
+            <div>{{ cruise.duration }}</div>
+
+
+
+            <hr>
+
+            <div class="price-row">
+                <span>
+                    Cabin ({{ passengerCount }} × ₹ {{ (cruise.price * cabin.priceMultiplier) | number }})
+                </span>
+                <span>₹ {{ basePrice | number }}</span>
+            </div>
+
+            <div class="price-row">
+                <span>Taxes & Fees (10%)</span>
+                <span>₹ {{ tax | number }}</span>
+            </div>
+
+            <div class="price-row">
+                <span>Port Fees</span>
+                <span>₹ {{ portFee | number }}</span>
+            </div>
+
+            <hr>
+
+            <div class="total">
+                <span>Total</span>
+                <span>₹ {{ total | number }}</span>
+            </div>
+
+            <div class="notice">
+                No payment required now - Pay at port
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

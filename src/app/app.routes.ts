@@ -20,18 +20,18 @@ export const routes: Routes = [
     path: 'cruises',
     loadComponent: () =>
       import('./features/cruises/cruise-list/cruise-list')
-        .then(c => c.CruiseListComponent)
+        .then(c => c.CruiseList)
   },
 
   {
     path: 'cruises-detail/:id',
     loadComponent: () =>
       import('./features/cruises/cruise-detail/cruise-detail')
-        .then(c => c.CruiseDetailComponent)
+        .then(c => c.CruiseDetail)
   },
 
   {
-    path: 'my-bookings',
+    path: 'my-booking',
     loadComponent: () =>
       import('./features/my-booking/my-booking')
         .then(m => m.MyBooking)
@@ -49,6 +49,29 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/auth/signin/signin')
         .then(m => m.Signin)
+  },
+  {
+    path:'booking/:cruiseId',
+    loadComponent: () =>
+      import('./features/pages/booking/select-cabin/select-cabin')
+        .then(m => m.SelectCabin)
+  },
+  {
+    path:'booking/:cruiseId/passengers',
+    loadComponent: () =>
+      import('./features/pages/booking/passengers/passengers')
+        .then(m => m.Passengers)
+  },
+  {
+     path:'booking/:cruiseId/confirm',
+     loadComponent: () =>
+       import('./features/pages/booking/confirm/confirm')
+         .then(m => m.Confirm)
+  },
+  {
+    path: 'ticket/:id',
+    loadComponent: () =>
+      import('./features/pages/booking/ticket/ticket')
+        .then(m => m.Ticket)
   }
-
 ];

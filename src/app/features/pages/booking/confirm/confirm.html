@@ -1,0 +1,43 @@
+<div class="confirm-wrapper" *ngIf="booking">
+
+  <h2>Review & Confirm</h2>
+
+  <!-- Passenger Summary -->
+  <div class="card">
+    <h3>Passengers</h3>
+
+    <div *ngFor="let p of booking.passengers; let i = index">
+      <strong>Guest {{ i + 1 }}</strong>
+      <p>{{ p.firstName }} {{ p.lastName }}</p>
+      <p>Passport: {{ p.passport }}</p>
+      <hr>
+    </div>
+  </div>
+
+  <!-- Price Summary -->
+  <div class="card">
+    <h3>Price Summary</h3>
+
+    <div class="row">
+      <span>Cabin</span>
+      <span>{{ booking.cabin.type }}</span>
+    </div>
+
+    <div class="row">
+      <span>Total Amount</span>
+      <span>₹ {{ booking.totalAmount | number }}</span>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="back" (click)="goBack()">Back</button>
+    <button class="confirm"
+            (click)="confirmBooking()"
+            [disabled]="loading">
+
+      {{ loading ? 'Processing...' : 'Confirm Booking' }}
+    </button>
+  </div>
+
+</div>

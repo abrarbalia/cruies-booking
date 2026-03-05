@@ -1,0 +1,45 @@
+.confirm-wrapper {
+  padding: 50px 8%;
+  background: #f5f8fa;
+  min-height: 100vh;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.back {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.confirm {
+  padding: 12px 25px;
+  border-radius: 8px;
+  background: #1c8fa3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.confirm:hover {
+  background: #157a8a;
+}
