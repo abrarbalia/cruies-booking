@@ -1,11 +1,11 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CruiseSearchBarComponent } from '../../../shared/components/cruise-search-bar/cruise-search-bar';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CruiseSearchBarComponent],
+  imports: [CommonModule, CruiseSearchBarComponent,RouterModule],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })

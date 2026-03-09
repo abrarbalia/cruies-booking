@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,8 +13,8 @@ export class BookingService {
     totalAmount: 0
   };
 
-  setCruise(data: any) {
-    this.bookingData.cruise = data;
+  setCruise(cruise: any) {
+    this.bookingData.cruise = cruise;
   }
 
   setCabin(cabin: any) {
@@ -32,7 +33,7 @@ export class BookingService {
     this.bookingData.totalAmount = amount;
   }
 
-  getBooking() {
+  getBooking(): any {
     return this.bookingData;
   }
 
@@ -45,5 +46,4 @@ export class BookingService {
       totalAmount: 0
     };
   }
-
 }

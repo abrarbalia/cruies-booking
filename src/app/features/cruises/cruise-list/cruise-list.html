@@ -1,17 +1,22 @@
-
 <section class="cruise-list-page">
-  <h2>Explore Cruises</h2> <!-- Loading -->
-<div *ngIf="!loading && cruises.length > 0">
-  <app-cruise-card
-    *ngFor="let c of cruises"
-    [id]="c.id"
-    [title]="c.title"
-    [image]="c.image"
-    [date]="c.month"
-    [route]="c.route"
-    [ports]="c.port"
-    [price]="c.price">
-  </app-cruise-card>
-</div>
-  <div *ngIf="!loading && cruises.length === 0" class="no-results"> ❌ No Cruises Available for Selected Filters </div>
+  <h2>Explore Cruises</h2>
+
+  <div *ngIf="loading">Loading cruises...</div>
+
+  <div *ngIf="!loading && cruises.length > 0">
+    <app-cruise-card
+      *ngFor="let c of cruises"
+      [id]="c.id"
+      [title]="c.title"
+      [image]="c.image"
+      [date]="c.month"
+      [route]="c.route"
+      [ports]="c.port"
+      [price]="c.price">
+    </app-cruise-card>
+  </div>
+
+  <div *ngIf="!loading && cruises.length === 0" class="no-results">
+    ❌ No Cruises Available
+  </div>
 </section>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CruiseCard } from '../cruise-card/cruise-card';
 import { CruiseService } from '../../../services/cruise.service';
@@ -18,33 +18,39 @@ export class CruiseList implements OnInit {
 
   constructor(
     private cruiseService: CruiseService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-
-    this.route.queryParams.subscribe(params => {
-
-      this.loading = true;
-
-      const hasFilters = Object.keys(params).length > 0;
-
-      if (hasFilters) {
-        this.cruiseService.searchCruises(params)
-          .then(data => {
-            this.cruises = data;
-            this.loading = false;
-          });
-      } else {
-        this.cruiseService.getCruises()
-          .then(data => {
-            this.cruises = data;
-            this.loading = false;
-          });
-      }
-
+    this.loadCruises();
+    this.route.queryParams.subscribe(() => {
+      this.loadCruises();
     });
-
   }
 
+  loadCruises() {
+    this.loading = true;
+    const params = this.route.snapshot.queryParams;
+    const hasFilters = Object.keys(params).length > 0;
+
+    let promise;
+
+    if (hasFilters) {
+      promise = this.cruiseService.searchCruises(params);
+    } else {
+      promise = this.cruiseService.getCruises();
+    }
+
+    promise
+      .then(data => {
+        this.cruises = data;
+        console.log('Cruises fetched:', data); // Check console
+      })
+      .catch(err => console.error('Error fetching cruises:', err))
+      .finally(() => {
+        this.loading = false;
+        this.cd.detectChanges(); // Force Angular to detect changes
+      });
+  }
 }
