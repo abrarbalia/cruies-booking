@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import {
   collection,
-  getDocs
-} from "firebase/firestore";
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc
+} from 'firebase/firestore';
 import { db } from '../firebase';
 
 export interface Offer {
   id?: string;
-  title: string;
+  title?: string;
   description?: string;
   image?: string;
   couponCode?: string;
@@ -22,15 +26,35 @@ export interface Offer {
 })
 export class OfferService {
 
-  // ✅ Get all offers
   async getOffers() {
-    const offersRef = collection(db, "offers");
+    const offersRef = collection(db, 'offers');
     const snapshot = await getDocs(offersRef);
 
-    return snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...(doc.data() as any)
+    return snapshot.docs.map(docSnap => ({
+      id: docSnap.id,
+      ...(docSnap.data() as any)
     }));
   }
 
+  async addOffer(offerData: any) {
+    const offersRef = collection(db, 'offers');
+    await addDoc(offersRef, offerData);
+  }
+
+  async updateOffer(id: string, offerData: any) {
+    const offerRef = doc(db, 'offers', id);
+    await updateDoc(offerRef, offerData);
+  }
+
+  async deleteOffer(id: string) {
+    const offerRef = doc(db, 'offers', id);
+    await deleteDoc(offerRef);
+  }
+
+  async toggleOfferStatus(id: string, currentStatus: boolean) {
+    const offerRef = doc(db, 'offers', id);
+    await updateDoc(offerRef, {
+      isActive: !currentStatus
+    });
+  }
 }

@@ -1,42 +1,52 @@
 <nav class="ocean-navbar">
   <div class="navbar-container">
-    <!-- Logo & Brand -->
     <a class="navbar-brand" routerLink="/">
       <span class="anchor-logo">⚓</span>
       <span class="brand-name">Ocean Crown</span>
     </a>
 
-    <!-- Desktop Menu -->
     <ul class="nav-menu">
       <li class="nav-item">
         <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
       </li>
+
       <li class="nav-item">
         <a routerLink="/cruises" routerLinkActive="active" class="nav-link">Cruises</a>
       </li>
+
       <li class="nav-item">
         <a routerLink="/offers" routerLinkActive="active" class="nav-link">Offers</a>
       </li>
-      <li class="nav-item">
+
+      <li class="nav-item" *ngIf="currentUser">
         <a routerLink="/my-booking" routerLinkActive="active" class="nav-link">My Booking</a>
       </li>
-      <li class="nav-item dropdown">
-        <a routerLink="/profile" routerLinkActive="active" class="nav-link dropdown-toggle">Profile</a>
+
+      <li class="nav-item dropdown" *ngIf="currentUser">
+        <a routerLink="/profile" routerLinkActive="active" class="nav-link dropdown-toggle">
+          {{ currentUser.email }}
+        </a>
         <ul class="dropdown-menu">
-          <li><a routerLink="/profile" class="dropdown-link">Profile</a></li>
-          <li><a routerLink="/profile/settings" class="dropdown-link">lpgout</a></li>
+          <li>
+            <a routerLink="/profile" class="dropdown-link">Profile</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="dropdown-link" (click)="logout()">Logout</a>
+          </li>
         </ul>
       </li>
-      <li class="nav-item">
-        <a routerLink="/login" routerLinkActive="active" class="nav-link btn-outline">Login</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/signin" routerLinkActive="active" class="nav-link btn-primary">Register</a>
-      </li>
+
+      <ng-container *ngIf="!currentUser">
+        <li class="nav-item">
+          <a routerLink="/login" routerLinkActive="active" class="nav-link btn-outline">Login</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/signin" routerLinkActive="active" class="nav-link btn-primary">Register</a>
+        </li>
+        <li><a href="javascript:void(0)" class="dropdown-link" (click)="logout()">Logout</a></li>
+      </ng-container>
     </ul>
 
-
-    <!-- Mobile Toggle -->
     <button class="mobile-toggle" #toggle>
       <span></span>
       <span></span>
@@ -44,5 +54,5 @@
     </button>
   </div>
 </nav>
-<app-register-modal *ngIf="showRegister" (close)="closeRegister()">
-</app-register-modal>
+<!-- 
+<app-register-modal *ngIf="showRegister" (close)="closeRegister()"></app-register-modal> -->

@@ -1,0 +1,171 @@
+<div class="checkin-dashboard">
+  <div class="left-panel">
+    <div class="header-section">
+      <h2>Passenger Check-In Dashboard</h2>
+      <p>Verify ticket and mark passenger boarding status</p>
+    </div>
+
+    <div class="summary-cards">
+      <div class="summary-card">
+        <h3>{{ getTotalPassengers() }}</h3>
+        <p>Total</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>{{ getCheckedInCount() }}</h3>
+        <p>Checked In</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>{{ getPendingCount() }}</h3>
+        <p>Pending</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>{{ getHoldCount() }}</h3>
+        <p>Hold</p>
+      </div>
+    </div>
+
+    <div class="search-box-wrapper">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="filterPassengers()"
+        placeholder="Search by name, reference, phone, passport, email"
+        class="search-box"
+      />
+    </div>
+
+    <div class="passenger-list">
+      <div
+        class="passenger-card"
+        *ngFor="let booking of filteredBookings"
+        (click)="selectPassenger(booking)"
+        [class.active]="selectedPassenger?.id === booking.id"
+      >
+        <div class="card-top">
+          <h4>
+            {{ booking.passengers?.[0]?.firstName }}
+            {{ booking.passengers?.[0]?.lastName }}
+          </h4>
+          <span class="status-badge">
+            {{ booking.boardingStatus || 'Pending' }}
+          </span>
+        </div>
+
+        <p><strong>Ref:</strong> {{ booking.reference }}</p>
+        <p><strong>Cruise:</strong> {{ booking.cruise?.title }}</p>
+        <p><strong>Date:</strong> {{ booking.cruise?.date }}</p>
+        <p><strong>Cabin:</strong> {{ booking.cabin?.type }}</p>
+        <p><strong>Phone:</strong> {{ booking.passengers?.[0]?.phone }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel" *ngIf="selectedPassenger">
+    <div class="details-header">
+      <h3>Passenger Details</h3>
+    </div>
+
+    <div class="details-card">
+      <h4>Passenger Information</h4>
+      <p>
+        <strong>Name:</strong>
+        {{ selectedPassenger.passengers?.[0]?.firstName }}
+        {{ selectedPassenger.passengers?.[0]?.lastName }}
+      </p>
+      <p><strong>DOB:</strong> {{ selectedPassenger.passengers?.[0]?.dob }}</p>
+      <p><strong>Email:</strong> {{ selectedPassenger.passengers?.[0]?.email }}</p>
+      <p><strong>Phone:</strong> {{ selectedPassenger.passengers?.[0]?.phone }}</p>
+      <p><strong>Passport:</strong> {{ selectedPassenger.passengers?.[0]?.passport }}</p>
+      <p><strong>Nationality:</strong> {{ selectedPassenger.passengers?.[0]?.nationality }}</p>
+    </div>
+
+    <div class="details-card">
+      <h4>Booking Information</h4>
+      <p><strong>Reference:</strong> {{ selectedPassenger.reference }}</p>
+      <p><strong>Status:</strong> {{ selectedPassenger.status }}</p>
+      <p><strong>Boarding Status:</strong> {{ selectedPassenger.boardingStatus || 'Pending' }}</p>
+      <p><strong>Checked In:</strong> {{ selectedPassenger.checkedIn ? 'Yes' : 'No' }}</p>
+      <p><strong>Verified:</strong> {{ selectedPassenger.verified ? 'Yes' : 'No' }}</p>
+      <p><strong>Total Amount:</strong> ₹{{ selectedPassenger.totalAmount | number:'1.2-2' }}</p>
+    </div>
+
+    <div class="details-card">
+      <h4>Cruise Information</h4>
+      <img
+        [src]="selectedPassenger.cruise?.image"
+        alt="Cruise Image"
+        class="details-image"
+      />
+      <p><strong>Title:</strong> {{ selectedPassenger.cruise?.title }}</p>
+      <p><strong>Destination:</strong> {{ selectedPassenger.cruise?.destination }}</p>
+      <p><strong>Date:</strong> {{ selectedPassenger.cruise?.date }}</p>
+      <p><strong>Duration:</strong> {{ selectedPassenger.cruise?.duration }}</p>
+      <p><strong>Port:</strong> {{ selectedPassenger.cruise?.port }}</p>
+      <p><strong>Route:</strong> {{ selectedPassenger.cruise?.route }}</p>
+    </div>
+
+    <div class="details-card">
+      <h4>Cabin Information</h4>
+      <img
+        [src]="selectedPassenger.cabin?.imageUrl"
+        alt="Cabin Image"
+        class="details-image"
+      />
+      <p><strong>Cabin Type:</strong> {{ selectedPassenger.cabin?.type }}</p>
+      <p><strong>Description:</strong> {{ selectedPassenger.cabin?.description }}</p>
+      <p><strong>Price Multiplier:</strong> {{ selectedPassenger.cabin?.priceMultiplier }}</p>
+
+      <div class="feature-list">
+        <span class="feature-badge" *ngFor="let feature of selectedPassenger.cabin?.features">
+          {{ feature }}
+        </span>
+      </div>
+    </div>
+
+    <div class="details-card">
+      <h4>Emergency Contact</h4>
+      <p><strong>Name:</strong> {{ selectedPassenger.emergencyContact?.name }}</p>
+      <p><strong>Relationship:</strong> {{ selectedPassenger.emergencyContact?.relationship }}</p>
+      <p><strong>Phone:</strong> {{ selectedPassenger.emergencyContact?.phone }}</p>
+    </div>
+
+    <div class="action-buttons">
+      <button
+        class="verify-btn"
+        (click)="verifyPassenger(selectedPassenger.id)"
+      >
+        Verify
+      </button>
+
+      <button
+        class="checkin-btn"
+        (click)="checkInPassenger(selectedPassenger.id)"
+        [disabled]="selectedPassenger.checkedIn"
+      >
+        {{ selectedPassenger.checkedIn ? 'Already Checked In' : 'Check In' }}
+      </button>
+
+      <button
+        class="hold-btn"
+        (click)="markHold(selectedPassenger.id)"
+      >
+        Hold
+      </button>
+
+      <button
+        class="not-arrived-btn"
+        (click)="markNotArrived(selectedPassenger.id)"
+      >
+        Not Arrived
+      </button>
+    </div>
+  </div>
+
+  <div class="right-panel empty-state" *ngIf="!selectedPassenger">
+    <h3>Select a passenger</h3>
+    <p>Choose a booking from the left side to view details and perform check-in.</p>
+  </div>
+</div>

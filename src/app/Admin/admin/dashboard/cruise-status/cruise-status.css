@@ -1,31 +1,89 @@
-.cruise-status-card{
-padding:20px;
-background:#fff;
-border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
+/* =============================================
+   CRUISE STATUS CARD
+   ============================================= */
+.cruise-status-card {
+  height: 100%;
 }
 
-.status-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin-top:15px;
+.cruise-status-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 22px 24px 16px;
+  border-bottom: 1px solid rgba(20, 184, 166, 0.12);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.status-box{
-background:#f6f7fb;
-padding:15px;
-border-radius:8px;
-text-align:center;
+.cruise-status-card h3::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal-400);
+  box-shadow: 0 0 8px var(--teal-400);
+  flex-shrink: 0;
 }
 
-.status-box h4{
-font-size:14px;
-color:#555;
+/* =============================================
+   STATUS GRID
+   ============================================= */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 20px;
 }
 
-.status-box p{
-font-size:22px;
-font-weight:600;
-margin-top:5px;
+.status-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 16px 14px;
+  text-align: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.status-box:hover {
+  background: rgba(20, 184, 166, 0.08);
+  border-color: rgba(20, 184, 166, 0.2);
+}
+
+.status-box h4 {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.status-box p {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+/* Individual box accent colors */
+.status-grid .status-box:nth-child(1) p { color: var(--text-primary); }
+.status-grid .status-box:nth-child(2) p { color: var(--teal-300); }
+.status-grid .status-box:nth-child(3) p { color: var(--gold-light); }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 640px) {
+  .status-grid {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .status-box p {
+    font-size: 1.5rem;
+  }
 }

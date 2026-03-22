@@ -1,1 +1,78 @@
-<p>bookings works!</p>
+<div class="booking-page">
+
+  <h2>Booking Management</h2>
+
+  <div class="filter-buttons">
+    <button (click)="filterBookings('All')" [class.active]="selectedStatus === 'All'">All</button>
+    <button (click)="filterBookings('Pending')" [class.active]="selectedStatus === 'Pending'">Pending</button>
+    <button (click)="filterBookings('Confirmed')" [class.active]="selectedStatus === 'Confirmed'">Confirmed</button>
+    <button (click)="filterBookings('Cancelled')" [class.active]="selectedStatus === 'Cancelled'">Cancelled</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>User</th>
+        <th>Cruise</th>
+        <th>Cabin</th>
+        <th>Passengers</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let booking of filteredBookings">
+        <td>{{ booking.id }}</td>
+
+        <td>
+          {{ booking.passengers?.[0]?.firstName || 'N/A' }}
+          {{ booking.passengers?.[0]?.lastName || '' }}
+        </td>
+
+        <td>{{ booking.cruise?.title || 'N/A' }}</td>
+
+        <td>{{ booking.cabin?.type || 'N/A' }}</td>
+
+        <td>{{ booking.passengers?.length || 0 }}</td>
+
+        <td>₹{{ booking.totalAmount | number:'1.0-2' }}</td>
+
+        <td>
+          <span
+            [ngClass]="{
+              'pending': booking.status === 'Pending',
+              'confirmed': booking.status === 'Confirmed',
+              'cancelled': booking.status === 'Cancelled'
+            }"
+            class="status-badge"
+          >
+            {{ booking.status }}
+          </span>
+        </td>
+
+        <td>
+          {{ booking.createdAt?.toDate ? (booking.createdAt.toDate() | date:'medium') : 'N/A' }}
+        </td>
+
+        <td class="action-buttons">
+          <button class="confirm-btn" (click)="updateStatus(booking.id, 'Confirmed')">
+            Confirm
+          </button>
+
+          <button class="cancel-btn" (click)="updateStatus(booking.id, 'Cancelled')">
+            Cancel
+          </button>
+
+          <button class="delete-btn" (click)="deleteBooking(booking.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,31 +1,89 @@
-.checkin-card{
-padding:20px;
-background:white;
-border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
+/* =============================================
+   CHECK-IN SUMMARY CARD
+   ============================================= */
+.checkin-card {
+  height: 100%;
 }
 
-.checkin-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin-top:15px;
+.checkin-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 22px 24px 16px;
+  border-bottom: 1px solid rgba(20, 184, 166, 0.12);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.check-box{
-background:#f6f7fb;
-padding:15px;
-border-radius:8px;
-text-align:center;
+.checkin-card h3::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal-400);
+  box-shadow: 0 0 8px var(--teal-400);
+  flex-shrink: 0;
 }
 
-.check-box h4{
-font-size:14px;
-color:#555;
+/* =============================================
+   CHECK-IN GRID
+   ============================================= */
+.checkin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 20px;
 }
 
-.check-box p{
-font-size:22px;
-font-weight:600;
-margin-top:5px;
+.check-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 16px 14px;
+  text-align: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.check-box:hover {
+  background: rgba(20, 184, 166, 0.08);
+  border-color: rgba(20, 184, 166, 0.2);
+}
+
+.check-box h4 {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.check-box p {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+/* Individual box accent colors */
+.checkin-grid .check-box:nth-child(1) p { color: #4ade80; }   /* Confirmed — green  */
+.checkin-grid .check-box:nth-child(2) p { color: var(--gold-light); } /* Pending — amber  */
+.checkin-grid .check-box:nth-child(3) p { color: #f87171; }   /* Cancelled — red  */
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 640px) {
+  .checkin-grid {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .check-box p {
+    font-size: 1.5rem;
+  }
 }

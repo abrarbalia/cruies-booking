@@ -1,0 +1,44 @@
+/* =============================================
+   GOOGLE FONT IMPORT
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* =============================================
+   CSS VARIABLES
+   ============================================= */
+:root {
+  --navy-900: #0a0f1e;
+  --navy-800: #0f172a;
+  --navy-700: #1a2540;
+  --navy-600: #243054;
+  --teal-500: #0d9488;
+  --teal-400: #14b8a6;
+  --teal-300: #5eead4;
+  --gold: #f59e0b;
+  --gold-light: #fcd34d;
+  --text-primary: #f0f4ff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --card-bg: #111827;
+  --card-border: rgba(20, 184, 166, 0.15);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* =============================================
+   GLOBAL RESET
+   ============================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--navy-900);
+  color: var(--text-primary);
+}

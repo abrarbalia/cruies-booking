@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { BookingService } from '../../services/booking-service.service';
 
 @Component({
   selector: 'app-my-booking',
@@ -8,16 +10,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './my-booking.html',
   styleUrls: ['./my-booking.css']
 })
-export class MyBooking {
-  bookingId = signal('');
-  bookingFound = signal(false);
+export class MyBooking implements OnInit {
+  bookings: any[] = [];
+  loading = true;
 
-  searchBooking() {
-    if (!this.bookingId()) {
-      alert('Please enter Booking ID');
-      return;
-    }
+  constructor(
+    private authService: AuthService,
+    private bookingService: BookingService
+  ) {}
 
-    this.bookingFound.set(true);
+  ngOnInit(): void {
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.bookingService.getUserBookings(user.uid).subscribe(data => {
+          this.bookings = data;
+          this.loading = false;
+        });
+      } else {
+        this.bookings = [];
+        this.loading = false;
+      }
+    });
   }
 }

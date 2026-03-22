@@ -1,70 +1,47 @@
-<!-- <section class="signin-container">
- <video autoplay muted loop class="signin-bg-video">
-    <source src="https://th.bing.com/th?&id=OVP.UEFllbKtcxmnzMU1NVX4JgEsDh&w=321&h=180&c=7&pid=2.1&rs=1" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
- 
-  <div class="signin-card">
-
-    <h2>Sign Up</h2>
-    <p>Create a new account to book your dream cruise</p>
+<section class="auth-wrapper">
+  <div class="auth-card">
+    <h2>Create Account</h2>
+    <p class="subtitle">Create your account to book your dream cruise</p>
 
     <input
-  type="text"
-  placeholder="First Name"
-  [value]="firstName()"
-  (input)="firstName.set($any($event.target).value)"
-  autocomplete="off"
-/>
+      type="text"
+      placeholder="Full Name"
+      [value]="fullName()"
+      (input)="fullName.set($any($event.target).value)"
+      autocomplete="off"
+    />
 
-<input
-  type="text"
-  placeholder="Last Name"
-  [value]="lastName()"
-  (input)="lastName.set($any($event.target).value)"
-  autocomplete="off"
-/>
+    <input
+      type="email"
+      placeholder="Email"
+      [value]="email()"
+      (input)="email.set($any($event.target).value)"
+      autocomplete="off"
+    />
 
-<input
-  type="email"
-  placeholder="Email"
-  [value]="email()"
-  (input)="email.set($any($event.target).value)"
-  autocomplete="off"
-/>
+    <input
+      type="tel"
+      placeholder="Phone Number"
+      [value]="phone()"
+      (input)="phone.set($any($event.target).value)"
+      autocomplete="off"
+    />
 
-<input
-  type="password"
-  placeholder="Password"
-  [value]="password()"
-  (input)="password.set($any($event.target).value)"
-  autocomplete="new-password"  >
-    <button (click)="signUp()">Sign Up</button>
+    <input
+      type="password"
+      placeholder="Password"
+      [value]="password()"
+      (input)="password.set($any($event.target).value)"
+      autocomplete="new-password"
+    />
 
-    <p class="signin-link">
-      Already have an account? <a routerLink="/login">Sign In</a>
+    <button (click)="signUp()" [disabled]="loading()">
+      {{ loading() ? 'Creating Account...' : 'Create Account' }}
+    </button>
+
+    <p class="auth-link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
     </p>
-
   </div>
-
-</section> -->
-
-<div class="auth-container">
-
-  <h2>Create Account</h2>
-
-  <input type="text" placeholder="Full Name">
-
-  <input type="email" placeholder="Email">
-
-  <input type="tel" placeholder="Phone Number">
-
-  <button>Create Account</button>
-
-  <p>
-    Already have account?
-    <a routerLink="/login">Login</a>
-  </p>
-
-</div>
+</section>
