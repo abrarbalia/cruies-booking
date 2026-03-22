@@ -1,1 +1,97 @@
-<p>offers works!</p>
+<div class="offer-page">
+
+  <div class="page-header">
+    <h2>Offer Management</h2>
+    <button class="add-btn" (click)="openForm()">Add Offer</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Coupon</th>
+        <th>Type</th>
+        <th>Value</th>
+        <th>Expiry Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let offer of offers">
+        <td>
+          <img [src]="offer.image" class="offer-img" alt="offer image">
+        </td>
+
+        <td>{{ offer.title }}</td>
+        <td>{{ offer.couponCode }}</td>
+        <td>{{ offer.discountType }}</td>
+        <td>
+          <span *ngIf="offer.discountType === 'flat'">₹{{ offer.discountValue }}</span>
+          <span *ngIf="offer.discountType === 'percentage'">{{ offer.discountValue }}%</span>
+        </td>
+        <td>{{ offer.expiryDate }}</td>
+        <td>
+          <span [class.active]="offer.isActive" [class.inactive]="!offer.isActive">
+            {{ offer.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+        <td class="action-buttons">
+          <button
+            class="toggle-btn"
+            (click)="toggleStatus(offer)"
+            [style.background]="offer.isActive ? 'gray' : 'green'">
+            {{ offer.isActive ? 'Disable' : 'Enable' }}
+          </button>
+
+          <button class="edit-btn" (click)="editOffer(offer)">Edit</button>
+          <button class="delete-btn" (click)="deleteOffer(offer.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- POPUP FORM -->
+<div class="popup" *ngIf="showForm">
+  <div class="popup-content">
+
+    <h3>{{ editMode ? 'Edit Offer' : 'Add Offer' }}</h3>
+
+    <input type="text" placeholder="Title" [(ngModel)]="offerForm.title">
+
+    <textarea placeholder="Description" [(ngModel)]="offerForm.description"></textarea>
+
+    <input type="text" placeholder="Coupon Code" [(ngModel)]="offerForm.couponCode">
+
+    <select [(ngModel)]="offerForm.discountType">
+      <option value="flat">Flat</option>
+      <option value="percentage">Percentage</option>
+    </select>
+
+    <input type="number" placeholder="Discount Value" [(ngModel)]="offerForm.discountValue">
+
+    <input type="date" [(ngModel)]="offerForm.expiryDate">
+
+    <input type="text" placeholder="Image URL" [(ngModel)]="offerForm.image">
+
+    <label class="checkbox-row">
+      <input type="checkbox" [(ngModel)]="offerForm.isActive">
+      Active
+    </label>
+
+    <div class="popup-actions">
+      <button class="save-btn" (click)="saveOffer()">
+        {{ editMode ? 'Update' : 'Add' }}
+      </button>
+
+      <button class="cancel-btn" type="button" (click)="closeForm()">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+</div>

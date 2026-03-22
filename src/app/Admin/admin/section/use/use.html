@@ -1,1 +1,53 @@
-<p>use works!</p>
+<div class="users-page">
+
+  <div class="page-header">
+    <h2>User Management</h2>
+    <button class="add-btn" (click)="openForm()">Add User</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.fullName || '-' }}</td>
+        <td>{{ user.email || '-' }}</td>
+        <td>{{ user.role || 'user' }}</td>
+        <td>
+          <button (click)="editUser(user)">Edit</button>
+          <button (click)="deleteUser(user.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="popup" *ngIf="showForm">
+  <div class="popup-content">
+    <h3>{{ editMode ? 'Edit User' : 'Add User' }}</h3>
+
+    <input type="text" placeholder="Name" [(ngModel)]="userForm.fullName">
+    <input type="email" placeholder="Email" [(ngModel)]="userForm.email">
+
+    <select [(ngModel)]="userForm.role">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <button (click)="saveUser()">
+      {{ editMode ? 'Update' : 'Add' }}
+    </button>
+
+    <button (click)="closeForm()">Cancel</button>
+  </div>
+</div>

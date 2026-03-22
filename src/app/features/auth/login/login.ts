@@ -1,49 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { getAuth, isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth';
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './login.html'
+  imports: [CommonModule, RouterModule],
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
 })
-export class Login implements OnInit {
+export class Login {
+  email = signal('');
+  password = signal('');
+  loading = signal(false);
 
-  email = '';
-  auth = getAuth();
-
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   async login() {
-    await this.authService.sendLoginLink(this.email);
-    alert('Login link sent to your email!');
-  }
-
-  async ngOnInit() {
-
-    console.log("Login page loaded");
-
-    if (isSignInWithEmailLink(this.auth, window.location.href)) {
-
-      console.log("Email sign-in link detected");
-
-      let email = localStorage.getItem('emailForSignIn');
-
-      if (!email) {
-        email = prompt('Please confirm your email');
-      }
-
-      if (email) {
-        await signInWithEmailLink(this.auth, email, window.location.href);
-
-        localStorage.removeItem('emailForSignIn');
-
-        alert('Login successful!');
-      }
+    if (!this.email().trim() || !this.password().trim()) {
+      alert('Please enter email and password');
+      return;
     }
 
-  }
+    try {
+      this.loading.set(true);
 
+      await this.authService.login(this.email(), this.password());
+
+      alert('Login successful');
+      this.router.navigate(['/']);
+    } catch (error: any) {
+      console.error(error);
+      alert(error?.message || 'Login failed');
+    } finally {
+      this.loading.set(false);
+    }
+  }
 }

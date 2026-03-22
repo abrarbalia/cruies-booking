@@ -1,102 +1,69 @@
 <div class="cruise-page">
+  <h2>Cruise Management</h2>
 
-    <h2>Cruise Management</h2>
+  <button class="add-btn" (click)="openForm()">Add Cruise</button>
 
-    <button class="add-btn" (click)="openForm()">Add Cruise</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Port</th>
+        <th>Destination</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
 
-    <table>
+    <tbody>
+      <tr *ngFor="let cruise of cruises">
+        <td>
+          <img [src]="cruise.image" class="cruise-img" />
+        </td>
 
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Port</th>
-                <th>Destination</th>
-                <th>Price</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+        <td>{{ cruise.title }}</td>
+        <td>{{ cruise.port }}</td>
+        <td>{{ cruise.destination }}</td>
+        <td>₹{{ cruise.price }}</td>
+        <td>{{ cruise.date }} {{ cruise.month }}</td>
+        <td>{{ cruise.isActive ? 'Enabled' : 'Disabled' }}</td>
 
-        <tbody>
+        <td>
+          <button
+            (click)="toggleStatus(cruise)"
+            [style.background]="cruise.isActive ? 'green' : 'gray'"
+            style="color:white;padding:5px 10px;border:none;border-radius:4px"
+          >
+            {{ cruise.isActive ? 'Disable' : 'Enable' }}
+          </button>
 
-            <tr *ngFor="let cruise of cruises">
+          <button (click)="editCruise(cruise)">Edit</button>
 
-                <td>
-                    <img [src]="cruise.imageUrl" class="cruise-img">
-                </td>
-
-                <td>{{ cruise.title }}</td>
-
-                <td>{{ cruise.port }}</td>
-
-                <td>{{ cruise.destination }}</td>
-
-                <td>₹{{ cruise.price }}</td>
-
-                <td>{{ cruise.date }} {{ cruise.month }}</td>
-
-                <td>
-
-                <td>
-
-                    <button (click)="toggleStatus(cruise)" [style.background]="cruise.isActive ? 'green' : 'gray'"
-                        style="color:white;padding:5px 10px;border:none;border-radius:4px">
-
-                        {{ cruise.isActive ? 'Disable' : 'Enable' }}
-
-                    </button>
-
-                    <button (click)="editCruise(cruise)">
-                        Edit
-                    </button>
-
-                    <button (click)="deleteCruise(cruise.id)">
-                        Delete
-                    </button>
-
-                </td>
-               
-
-            </tr>
-
-        </tbody>
-
-    </table>
-
+          <button (click)="deleteCruise(cruise.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-
-<!-- POPUP FORM -->
-
 <div class="popup" *ngIf="showForm">
+  <div class="popup-content">
+    <h3>{{ editMode ? 'Edit Cruise' : 'Add Cruise' }}</h3>
 
-    <div class="popup-content">
+    <input placeholder="Title" [(ngModel)]="cruiseForm.title" />
+    <input placeholder="Port" [(ngModel)]="cruiseForm.port" />
+    <input placeholder="Destination" [(ngModel)]="cruiseForm.destination" />
+    <input placeholder="Price" type="number" [(ngModel)]="cruiseForm.price" />
+    <input placeholder="Date" [(ngModel)]="cruiseForm.date" />
+    <input placeholder="Month" [(ngModel)]="cruiseForm.month" />
+    <input placeholder="Image URL" [(ngModel)]="cruiseForm.image" />
 
-        <h3>{{ editMode ? 'Edit Cruise' : 'Add Cruise' }}</h3>
+    <button (click)="saveCruise()">
+      {{ editMode ? 'Update' : 'Add' }}
+    </button>
 
-        <input placeholder="Title" [(ngModel)]="cruiseForm.title">
-
-        <input placeholder="Port" [(ngModel)]="cruiseForm.port">
-
-        <input placeholder="Destination" [(ngModel)]="cruiseForm.destination">
-
-        <input placeholder="Price" [(ngModel)]="cruiseForm.price">
-
-        <input placeholder="Date" [(ngModel)]="cruiseForm.date">
-
-        <input placeholder="Month" [(ngModel)]="cruiseForm.month">
-
-        <input placeholder="Image URL" [(ngModel)]="cruiseForm.imageUrl">
-
-        <button (click)="saveCruise()">
-            {{ editMode ? 'Update' : 'Add' }}
-        </button>
-
-        <button (click)="closeForm()">
-            Cancel
-        </button>
-
-    </div>
-
+    <button (click)="closeForm()">Cancel</button>
+  </div>
 </div>

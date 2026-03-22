@@ -1,0 +1,272 @@
+.checkin-dashboard {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100vh;
+  background: #f4f7fb;
+  box-sizing: border-box;
+}
+
+.left-panel,
+.right-panel {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.header-section h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #1e3a8a;
+}
+
+.header-section p {
+  margin: 6px 0 18px;
+  color: #666;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.summary-card {
+  background: #eef4ff;
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+}
+
+.summary-card h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #1e3a8a;
+}
+
+.summary-card p {
+  margin: 6px 0 0;
+  color: #555;
+  font-weight: 500;
+}
+
+.search-box-wrapper {
+  margin-bottom: 16px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d5dbe7;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-box:focus {
+  border-color: #1e3a8a;
+}
+
+.passenger-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 72vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.passenger-card {
+  border: 1px solid #e3e7ef;
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  background: #fff;
+}
+
+.passenger-card:hover {
+  background: #f8fbff;
+  border-color: #bfd1ff;
+}
+
+.passenger-card.active {
+  border-color: #1e3a8a;
+  background: #eef4ff;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-top h4 {
+  margin: 0 0 10px;
+  color: #1d2d5c;
+  font-size: 18px;
+}
+
+.status-badge {
+  background: #dbeafe;
+  color: #1e3a8a;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.passenger-card p,
+.details-card p {
+  margin: 6px 0;
+  color: #333;
+  line-height: 1.45;
+}
+
+.details-header h3 {
+  margin: 0 0 16px;
+  color: #1e3a8a;
+  font-size: 24px;
+}
+
+.right-panel {
+  max-height: 95vh;
+  overflow-y: auto;
+}
+
+.details-card {
+  border: 1px solid #e7ebf3;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fcfdff;
+}
+
+.details-card h4 {
+  margin: 0 0 12px;
+  color: #1d2d5c;
+}
+
+.details-image {
+  width: 100%;
+  max-width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.feature-badge {
+  background: #eef2ff;
+  color: #374151;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.verify-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.checkin-btn {
+  background: #16a34a;
+  color: white;
+}
+
+.hold-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.not-arrived-btn {
+  background: #dc2626;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #666;
+}
+
+.empty-state h3 {
+  margin-bottom: 8px;
+  color: #1e3a8a;
+}
+
+@media (max-width: 1100px) {
+  .checkin-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .right-panel {
+    max-height: unset;
+  }
+}
+
+@media (max-width: 600px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}

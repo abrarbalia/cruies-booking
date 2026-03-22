@@ -1,15 +1,31 @@
-<div class="auth-container">
+<section class="auth-wrapper">
+  <div class="auth-card">
+    <h2>Login</h2>
+    <p class="subtitle">Login to continue your cruise booking</p>
 
-  <h2>Login</h2>
+    <input
+      type="email"
+      placeholder="Email"
+      [value]="email()"
+      (input)="email.set($any($event.target).value)"
+      autocomplete="off"
+    />
 
-  <input
-    type="email"
-    placeholder="Enter your email"
-    [(ngModel)]="email"
-  >
+    <input
+      type="password"
+      placeholder="Password"
+      [value]="password()"
+      (input)="password.set($any($event.target).value)"
+      autocomplete="current-password"
+    />
 
-  <button (click)="login()">
-    Send Login Link
-  </button>
+    <button (click)="login()" [disabled]="loading()">
+      {{ loading() ? 'Logging in...' : 'Login' }}
+    </button>
 
-</div>
+    <p class="auth-link">
+      Don’t have an account?
+      <a routerLink="/register">Create Account</a>
+    </p>
+  </div>
+</section>

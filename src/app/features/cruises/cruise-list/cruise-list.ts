@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CruiseCard } from '../cruise-card/cruise-card';
@@ -30,28 +29,28 @@ export class CruiseList implements OnInit {
     });
   }
 
-  loadCruises() {
-    this.loading = true;
-    const params = this.route.snapshot.queryParams;
-    const hasFilters = Object.keys(params).length > 0;
+loadCruises() {
+  this.loading = true;
+  const params = this.route.snapshot.queryParams;
+  const hasFilters = Object.keys(params).length > 0;
 
-    let promise;
+  let promise;
 
-    if (hasFilters) {
-      promise = this.cruiseService.searchCruises(params);
-    } else {
-      promise = this.cruiseService.getCruises();
-    }
-
-    promise
-      .then(data => {
-        this.cruises = data;
-        console.log('Cruises fetched:', data); // Check console
-      })
-      .catch(err => console.error('Error fetching cruises:', err))
-      .finally(() => {
-        this.loading = false;
-        this.cd.detectChanges(); // Force Angular to detect changes
-      });
+  if (hasFilters) {
+    promise = this.cruiseService.searchCruises(params);
+  } else {
+    promise = this.cruiseService.getActiveCruises();
   }
+
+  promise
+    .then(data => {
+      this.cruises = data;
+      console.log('Cruises fetched:', data);
+    })
+    .catch(err => console.error('Error fetching cruises:', err))
+    .finally(() => {
+      this.loading = false;
+      this.cd.detectChanges();
+    });
+}
 }

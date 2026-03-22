@@ -84,5 +84,11 @@ export const routes: Routes = [
   loadChildren: () =>
     import('./Admin/admin/admin-routing-module')
       .then(m => m.AdminRoutingModule)
+},
+{
+  path: 'admin/checkin',
+  loadComponent: () =>
+    import('./Admin/admin/checkin/checkin')
+      .then(m => m.Checkin)
 }
 ];
