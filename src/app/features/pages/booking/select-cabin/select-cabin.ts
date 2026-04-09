@@ -1,17 +1,17 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CruiseService } from '../../../../services/cruise.service';
 import { BookingService } from '../../../../services/booking.service';
 import { OfferService } from '../../../../services/offer.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './select-cabin.html',
-  styleUrls: ['./select-cabin.css']
+  styleUrls: ['./select-cabin.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectCabin implements OnInit {
 
@@ -19,7 +19,6 @@ export class SelectCabin implements OnInit {
   selectedCabin: any;
 
   passengerCount = 1;
-  passengers: any[] = [];
 
   basePrice = 0;
   tax = 0;
@@ -36,18 +35,18 @@ export class SelectCabin implements OnInit {
     private cruiseService: CruiseService,
     private bookingService: BookingService,
     private router: Router,
-    private offerService: OfferService
+    private offerService: OfferService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   async ngOnInit() {
-
     const id = this.route.snapshot.paramMap.get('cruiseId');
 
     if (id) {
       this.cruise = await this.cruiseService.getCruiseById(id);
       this.bookingService.setCruise(this.cruise);
+      this.cdr.markForCheck(); // Update template after async fetch
     }
-
   }
 
   selectCabin(cabin: any) {
@@ -56,7 +55,6 @@ export class SelectCabin implements OnInit {
   }
 
   calculatePrice() {
-
     if (!this.selectedCabin) return;
 
     this.basePrice =
@@ -67,37 +65,32 @@ export class SelectCabin implements OnInit {
     let discountedPrice = this.basePrice;
 
     if (this.appliedOffer) {
-
       if (this.appliedOffer.discountType === 'percentage') {
-        this.discount =
-          this.basePrice * (this.appliedOffer.discountValue / 100);
-      }
-
-      if (this.appliedOffer.discountType === 'flat') {
+        this.discount = this.basePrice * (this.appliedOffer.discountValue / 100);
+      } else if (this.appliedOffer.discountType === 'flat') {
         this.discount = this.appliedOffer.discountValue;
       }
-
       discountedPrice = this.basePrice - this.discount;
+    } else {
+      this.discount = 0;
     }
 
     this.tax = discountedPrice * 0.10;
-
     this.total = discountedPrice + this.tax + this.portFee;
 
     this.bookingService.setCabin(this.selectedCabin);
     this.bookingService.setTotal(this.total);
 
+    this.cdr.markForCheck(); // ensure view updates
   }
 
   async applyCoupon() {
-
     if (!this.couponCode.trim()) {
       alert("Enter coupon code");
       return;
     }
 
     const offers = await this.offerService.getOffers();
-
     const found = offers.find((o: any) =>
       o.couponCode?.toLowerCase() === this.couponCode.trim().toLowerCase() &&
       o.isActive === true
@@ -108,22 +101,17 @@ export class SelectCabin implements OnInit {
       return;
     }
 
-   this.appliedOffer = found;
-
-this.calculatePrice();
-
-this.bookingService.setOffer(found);
-this.bookingService.setDiscount(this.discount);
-
-alert("Coupon Applied Successfully");
+    this.appliedOffer = found;
+    this.calculatePrice();
+    this.bookingService.setOffer(found);
+    this.bookingService.setDiscount(this.discount);
+    alert("Coupon Applied Successfully");
   }
 
   continue() {
-
     if (!this.selectedCabin) return;
 
     const passengersArray = [];
-
     for (let i = 0; i < this.passengerCount; i++) {
       passengersArray.push({
         firstName: '',
@@ -141,5 +129,4 @@ alert("Coupon Applied Successfully");
       'passengers'
     ]);
   }
-
 }

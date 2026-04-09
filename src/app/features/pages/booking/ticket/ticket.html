@@ -12,14 +12,13 @@
 
         <div class="header">
             <h2>Ocean Crown Cruise Ticket</h2>
-            <div class="status confirmed">
+            <div class="status" [ngClass]="booking.status?.toLowerCase()">
                 {{ booking.status || 'Confirmed' }}
             </div>
         </div>
 
         <div class="reference">
-            Booking Reference:
-            <strong>{{ booking.reference }}</strong>
+            Booking Reference: <strong>{{ booking.reference }}</strong>
         </div>
 
         <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" class="qr-code" />
@@ -36,11 +35,8 @@
         <hr>
 
         <h4>Passengers</h4>
-
         <div *ngFor="let p of booking.passengers; let i = index">
-            {{ i + 1 }}.
-            {{ p.firstName }} {{ p.lastName }}
-            — Passport: {{ p.passport }}
+            {{ i + 1 }}. {{ p.firstName }} {{ p.lastName }} — Passport: {{ p.passport }}
         </div>
 
         <hr>
@@ -52,6 +48,7 @@
         <div class="button-group">
             <button (click)="printTicket()">Print</button>
             <button (click)="downloadPDF()">Download PDF</button>
+            <button *ngIf="booking.status !== 'Cancelled'" (click)="cancelBooking()">Cancel Booking</button>
         </div>
 
     </div>

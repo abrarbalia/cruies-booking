@@ -77,3 +77,106 @@
   text-decoration: none;
   font-weight: 600;
 }
+/* Container setup */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+}
+
+.auth-container {
+  display: flex;
+  width: 100%;
+  max-width: 1100px;
+  height: 650px;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+/* Visual Side Styles */
+.auth-visual {
+  flex: 1.2;
+  position: relative;
+  background: #1e293b; /* Fallback */
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.overlay-content h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Form Side Styles */
+.auth-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* UI Refinements */
+.auth-card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.auth-card input {
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  margin-bottom: 16px;
+}
+
+.auth-card input:focus {
+  background: #fff;
+  border-color: #2563eb;
+}
+
+.btn-primary {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+/* Responsive: Hide video side on small screens */
+@media (max-width: 900px) {
+  .auth-visual {
+    display: none;
+  }
+  .auth-container {
+    max-width: 450px;
+    height: auto;
+  }
+}

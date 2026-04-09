@@ -1,137 +1,104 @@
 <div *ngIf="cruise" class="booking-layout">
 
-    <!-- ================= LEFT SIDE ================= -->
-    <div class="left">
+  <!-- ================= LEFT SIDE ================= -->
+  <div class="left">
 
-        <div class="cabins-container" *ngIf="cruise.cabins?.length">
-            <h3 class="section-title">Select Your Cabin</h3>
+    <div class="cabins-container" *ngIf="cruise.cabins?.length">
+      <h3 class="section-title">Select Your Cabin</h3>
 
-            <div class="cabin-card" *ngFor="let c of cruise.cabins" [class.selected]="selectedCabin?.type === c.type"
-                (click)="selectCabin(c)">
+      <div class="cabin-card" *ngFor="let c of cruise.cabins" [class.selected]="selectedCabin?.type === c.type"
+          (click)="selectCabin(c)">
 
-                <!-- LEFT IMAGE -->
-                <div class="cabin-left">
-                    <img [src]="c.imageUrl || 'assets/default-cabin.jpg'" alt="{{c.type}}">
-                </div>
-
-                <!-- MIDDLE INFO -->
-                <div class="cabin-middle">
-                    <div class="cabin-top">
-                        <h4>{{c.type}}</h4>
-
-                        <span class="selected-badge" *ngIf="selectedCabin?.type === c.type">
-                            Selected
-                        </span>
-                    </div>
-
-                    <div class="feature-tags">
-                        <span *ngFor="let f of c.features">
-                            {{f}}
-                        </span>
-                    </div>
-                </div>
-
-                <!-- RIGHT PRICE -->
-                <div class="cabin-right">
-                    <div class="price">
-                        ₹ {{ cruise.price * c.priceMultiplier | number }}
-                    </div>
-                    <span>per person</span>
-                </div>
-
-            </div>
+        <div class="cabin-left">
+          <img [src]="c.imageUrl || 'assets/default-cabin.jpg'" alt="{{c.type}}">
         </div>
 
-        <!-- PASSENGER SELECT -->
-        <div class="passenger-select" *ngIf="selectedCabin">
-            <label>Passengers</label>
-            <select [(ngModel)]="passengerCount" (change)="calculatePrice()">
-
-                <option [value]="1">1 Passenger</option>
-                <option [value]="2">2 Passengers</option>
-
-            </select>
+        <div class="cabin-middle">
+          <div class="cabin-top">
+            <h4>{{c.type}}</h4>
+            <span class="selected-badge" *ngIf="selectedCabin?.type === c.type">Selected</span>
+          </div>
+          <div class="feature-tags">
+            <span *ngFor="let f of c.features">{{f}}</span>
+          </div>
         </div>
 
+        <div class="cabin-right">
+          <div class="price">₹ {{ cruise.price * c.priceMultiplier | number }}</div>
+          <span>per person</span>
+        </div>
+      </div>
     </div>
 
-
-    <!-- ================= RIGHT SIDE SUMMARY ================= -->
-    <div class="summary" *ngIf="selectedCabin">
-
-        <!-- Cruise Info -->
-        <div class="cruise-info">
-            <h3>{{ cruise.title }}</h3>
-            <p class="ship">{{ cruise.ship }}</p>
-
-            <div class="info-block">
-                <div>
-                    <label>Departing from</label>
-                    <div>{{ cruise.port }}</div>
-                </div>
-
-                <div>
-                    <label>Travel Dates</label>
-                    <div>{{ cruise.date }}</div>
-                </div>
-
-                <div>
-                    <label>Duration</label>
-                    <div>{{ cruise.duration }}</div>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- Cabin & Guests -->
-        <div class="summary-item">
-            <span>{{ selectedCabin.type }} Cabin</span>
-            <span>{{ passengerCount }} Guest(s)</span>
-        </div>
-
-        <!-- Price Breakdown -->
-        <div class="summary-item">
-            <span>
-                Cabin ({{ passengerCount }} ×
-                ₹ {{ (cruise.price * selectedCabin.priceMultiplier) | number }})
-            </span>
-            <span>₹ {{ basePrice | number }}</span>
-        </div>
-
-        <div class="summary-item">
-            <span>Taxes & Fees (10%)</span>
-            <span>₹ {{ tax | number }}</span>
-        </div>
-
-        <div class="summary-item">
-            <span>Port Fees</span>
-            <span>₹ {{ portFee | number }}</span>
-        </div>
-
-        <hr>
-        <!-- COUPON SECTION -->
-        <div class="coupon-box">
-
-            <input type="text" [(ngModel)]="couponCode" placeholder="Enter coupon code">
-
-            <button (click)="applyCoupon()">Apply</button>
-
-        </div>
-
-        <!-- SHOW DISCOUNT -->
-        <div class="summary-item" *ngIf="discount > 0">
-            <span>Discount</span>
-            <span style="color:green">- ₹ {{ discount | number }}</span>
-        </div>
-        <div class="total">
-            ₹ {{ total | number }}
-        </div>
-
-        <button (click)="continue()">
-            Continue
-        </button>
-
+    <div class="passenger-select" *ngIf="selectedCabin">
+      <label>Passengers</label>
+      <select [(ngModel)]="passengerCount" (change)="calculatePrice()">
+        <option [value]="1">1 Passenger</option>
+        <option [value]="2">2 Passengers</option>
+      </select>
     </div>
+
+  </div>
+
+  <!-- ================= RIGHT SIDE SUMMARY ================= -->
+  <div class="summary" *ngIf="selectedCabin">
+
+    <div class="cruise-info">
+      <h3>{{ cruise.title }}</h3>
+      <p class="ship">{{ cruise.ship }}</p>
+      <div class="info-block">
+        <div>
+          <label>Departing from</label>
+          <div>{{ cruise.port }}</div>
+        </div>
+        <div>
+          <label>Travel Dates</label>
+          <div>{{ cruise.date }}</div>
+        </div>
+        <div>
+          <label>Duration</label>
+          <div>{{ cruise.duration }}</div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="summary-item">
+      <span>{{ selectedCabin.type }} Cabin</span>
+      <span>{{ passengerCount }} Guest(s)</span>
+    </div>
+
+    <div class="summary-item">
+      <span>Cabin ({{ passengerCount }} × ₹ {{ (cruise.price * selectedCabin.priceMultiplier) | number }})</span>
+      <span>₹ {{ basePrice | number }}</span>
+    </div>
+
+    <div class="summary-item">
+      <span>Taxes & Fees (10%)</span>
+      <span>₹ {{ tax | number }}</span>
+    </div>
+
+    <div class="summary-item">
+      <span>Port Fees</span>
+      <span>₹ {{ portFee | number }}</span>
+    </div>
+
+    <hr>
+
+    <div class="coupon-box">
+      <input type="text" [(ngModel)]="couponCode" placeholder="Enter coupon code">
+      <button (click)="applyCoupon()">Apply</button>
+    </div>
+
+    <div class="summary-item" *ngIf="discount > 0">
+      <span>Discount</span>
+      <span style="color:green">- ₹ {{ discount | number }}</span>
+    </div>
+
+    <div class="total">₹ {{ total | number }}</div>
+    <button (click)="continue()">Continue</button>
+
+  </div>
 
 </div>

@@ -1,23 +1,54 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { OfferService } from '../../services/offer.service';
+import { BookingService } from '../../services/booking.service';
+import { Router } from '@angular/router';
 
-import { Offers } from './offers';
+@Component({
+  selector: 'app-offer',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './offers.html',
+  styleUrls: ['./offers.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class Offers implements OnInit {
 
-describe('Offers', () => {
-  let component: Offers;
-  let fixture: ComponentFixture<Offers>;
+  offers: any[] = [];
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Offers]
-    })
-    .compileComponents();
+  constructor(
+    private offerService: OfferService,
+    private bookingService: BookingService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-    fixture = TestBed.createComponent(Offers);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+  async ngOnInit() {
+    try {
+      this.offers = await this.offerService.getOffers();
+      this.cdr.markForCheck(); // refresh view for OnPush
+      console.log("Offers:", this.offers);
+    } catch (error) {
+      console.error("Error loading offers:", error);
+    }
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  copyCoupon(code: string) {
+    if (!code) return;
+    navigator.clipboard.writeText(code);
+    alert(`Coupon ${code} copied!`);
+  }
+
+  applyOffer(offer: any) {
+    this.bookingService.setOffer(offer);
+    this.router.navigate(['/']);
+  }
+
+  scrollLeft(container: HTMLElement) {
+    container.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight(container: HTMLElement) {
+    container.scrollBy({ left: 300, behavior: 'smooth' });
+  }
+}
