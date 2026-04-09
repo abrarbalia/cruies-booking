@@ -77,46 +77,47 @@
   text-decoration: none;
   font-weight: 600;
 }
-/* Container setup */
 .auth-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8fafc;
+  background: #f0f4f8;
+  font-family: 'Inter', sans-serif;
 }
 
 .auth-container {
   display: flex;
   width: 100%;
-  max-width: 1100px;
-  height: 650px;
+  max-width: 1000px;
+  height: 600px;
   background: #fff;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-  margin: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
 
-/* Visual Side Styles */
+/* Visual Side with Photo */
 .auth-visual {
-  flex: 1.2;
+  flex: 1.1;
   position: relative;
-  background: #1e293b; /* Fallback */
+  /* Replace URL with your actual cruise photo */
+  background-image: url('https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: flex-end;
-  padding: 40px;
-  overflow: hidden;
+  padding: 50px;
 }
 
-.bg-video {
+/* Dark gradient to make text readable */
+.visual-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.7) 100%);
 }
 
 .overlay-content {
@@ -125,58 +126,75 @@
   color: white;
 }
 
-.overlay-content h1 {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+.badge {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Form Side Styles */
+.overlay-content h1 {
+  font-size: 36px;
+  margin: 15px 0;
+  line-height: 1.1;
+}
+
+/* Form Styling */
 .auth-content {
   flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding: 40px;
+  padding: 40px 60px;
 }
 
-.auth-card {
-  width: 100%;
-  max-width: 360px;
+.logo-placeholder {
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
-/* UI Refinements */
 .auth-card h2 {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  font-size: 24px;
+  color: #1e293b;
+  margin-bottom: 5px;
 }
 
 .auth-card input {
-  background: #f1f5f9;
-  border: 1px solid transparent;
-  margin-bottom: 16px;
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s;
 }
 
 .auth-card input:focus {
-  background: #fff;
   border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
 .btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 12px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  cursor: pointer;
+  transition: transform 0.1s;
 }
 
-/* Responsive: Hide video side on small screens */
-@media (max-width: 900px) {
-  .auth-visual {
-    display: none;
-  }
-  .auth-container {
-    max-width: 450px;
-    height: auto;
-  }
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Mobile Responsive */
+@media (max-width: 850px) {
+  .auth-visual { display: none; }
+  .auth-container { max-width: 400px; height: auto; }
 }

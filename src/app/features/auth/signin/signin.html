@@ -1,47 +1,64 @@
 <section class="auth-wrapper">
-  <div class="auth-card">
-    <h2>Create Account</h2>
-    <p class="subtitle">Create your account to book your dream cruise</p>
+  <div class="auth-container">
+    
+    <div class="auth-visual">
+      <div class="visual-overlay"></div>
+      <div class="overlay-content">
+        <span class="badge">Join the Fleet</span>
+        <h1>Your Dream Mysha's Crown <br> Starts Here.</h1>
+        <p>Create an account to unlock exclusive cruise deals and personalized itineraries.</p>
+      </div>
+    </div>
 
-    <input
-      type="text"
-      placeholder="Full Name"
-      [value]="fullName()"
-      (input)="fullName.set($any($event.target).value)"
-      autocomplete="off"
-    />
+    <div class="auth-content">
+      <div class="auth-card">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join us to start booking your next escape</p>
 
-    <input
-      type="email"
-      placeholder="Email"
-      [value]="email()"
-      (input)="email.set($any($event.target).value)"
-      autocomplete="off"
-    />
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Full Name"
+            [value]="fullName()"
+            (input)="fullName.set($any($event.target).value)"
+            autocomplete="name"
+          />
 
-    <input
-      type="tel"
-      placeholder="Phone Number"
-      [value]="phone()"
-      (input)="phone.set($any($event.target).value)"
-      autocomplete="off"
-    />
+          <input
+            type="email"
+            placeholder="Email Address"
+            [value]="email()"
+            (input)="email.set($any($event.target).value)"
+            autocomplete="email"
+          />
 
-    <input
-      type="password"
-      placeholder="Password"
-      [value]="password()"
-      (input)="password.set($any($event.target).value)"
-      autocomplete="new-password"
-    />
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            [value]="phone()"
+            (input)="phone.set($any($event.target).value)"
+            autocomplete="tel"
+          />
 
-    <button (click)="signUp()" [disabled]="loading()">
-      {{ loading() ? 'Creating Account...' : 'Create Account' }}
-    </button>
+          <input
+            type="password"
+            placeholder="Create Password"
+            [value]="password()"
+            (input)="password.set($any($event.target).value)"
+            autocomplete="new-password"
+          />
+        </div>
 
-    <p class="auth-link">
-      Already have an account?
-      <a routerLink="/login">Login</a>
-    </p>
+        <button (click)="signUp()" [disabled]="loading()" class="btn-primary">
+          {{ loading() ? 'Creating Account...' : 'Create Account' }}
+        </button>
+
+        <p class="auth-link">
+          Already have an account?
+          <a routerLink="/login">Login</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 </section>
