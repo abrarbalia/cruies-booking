@@ -1,24 +1,25 @@
 <section class="auth-wrapper">
   <div class="auth-container">
+    
     <div class="auth-visual">
+      <div class="visual-overlay"></div>
       <div class="overlay-content">
-        <h1>Set Sail on Your Next Adventure</h1>
-        <p>Luxury cruises tailored to your lifestyle.</p>
+        <span class="badge">Exclusive Getaways</span>
+        <h1>Experience the <br> Blue Horizon</h1>
+        <p>Book your cabin today and set sail into the sunset with world-class amenities.</p>
       </div>
-      <video autoplay muted loop playsinline class="bg-video">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-yacht-on-the-ocean-1522-large.mp4" type="video/mp4">
-      </video>
     </div>
 
     <div class="auth-content">
       <div class="auth-card">
+        <div class="logo-placeholder">🚢</div>
         <h2>Welcome Back</h2>
-        <p class="subtitle">Login to continue your cruise booking</p>
+        <p class="subtitle">Login to your cruise dashboard</p>
 
-        <div class="input-group">
+        <div class="form-group">
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Email address"
             [value]="email()"
             (input)="email.set($any($event.target).value)"
             autocomplete="off"
@@ -33,14 +34,15 @@
         </div>
 
         <button (click)="login()" [disabled]="loading()" class="btn-primary">
-          {{ loading() ? 'Logging in...' : 'Sign In' }}
+          {{ loading() ? 'Verifying...' : 'Sign In' }}
         </button>
 
         <p class="auth-link">
-          Don’t have an account?
+          New to our fleet?
           <a routerLink="/signin">Create Account</a>
         </p>
       </div>
     </div>
+
   </div>
 </section>

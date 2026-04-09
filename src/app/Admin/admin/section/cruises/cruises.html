@@ -1,12 +1,9 @@
 <div class="cruise-page">
-
   <h2>Cruise Management</h2>
 
   <button class="add-btn" (click)="openForm()">Add Cruise</button>
 
-  <div *ngIf="loading">Loading cruises...</div>
-
-  <table *ngIf="!loading">
+  <table>
     <thead>
       <tr>
         <th>Image</th>
@@ -22,20 +19,28 @@
 
     <tbody>
       <tr *ngFor="let cruise of cruises">
-        <td><img [src]="cruise.image" class="cruise-img" /></td>
+        <td>
+          <img [src]="cruise.image" class="cruise-img" />
+        </td>
+
         <td>{{ cruise.title }}</td>
         <td>{{ cruise.port }}</td>
         <td>{{ cruise.destination }}</td>
         <td>₹{{ cruise.price }}</td>
         <td>{{ cruise.date }} {{ cruise.month }}</td>
         <td>{{ cruise.isActive ? 'Enabled' : 'Disabled' }}</td>
+
         <td>
-          <button (click)="toggleStatus(cruise)" 
-                  [style.background]="cruise.isActive ? 'green' : 'gray'" 
-                  style="color:white;padding:5px 10px;border:none;border-radius:4px">
+          <button
+            (click)="toggleStatus(cruise)"
+            [style.background]="cruise.isActive ? 'green' : 'gray'"
+            style="color:white;padding:5px 10px;border:none;border-radius:4px"
+          >
             {{ cruise.isActive ? 'Disable' : 'Enable' }}
           </button>
+
           <button (click)="editCruise(cruise)">Edit</button>
+
           <button (click)="deleteCruise(cruise.id)">Delete</button>
         </td>
       </tr>
@@ -43,7 +48,6 @@
   </table>
 </div>
 
-<!-- Popup Form -->
 <div class="popup" *ngIf="showForm">
   <div class="popup-content">
     <h3>{{ editMode ? 'Edit Cruise' : 'Add Cruise' }}</h3>
@@ -56,7 +60,10 @@
     <input placeholder="Month" [(ngModel)]="cruiseForm.month" />
     <input placeholder="Image URL" [(ngModel)]="cruiseForm.image" />
 
-    <button (click)="saveCruise()">{{ editMode ? 'Update' : 'Add' }}</button>
+    <button (click)="saveCruise()">
+      {{ editMode ? 'Update' : 'Add' }}
+    </button>
+
     <button (click)="closeForm()">Cancel</button>
   </div>
 </div>
