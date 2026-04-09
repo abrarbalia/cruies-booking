@@ -3,14 +3,19 @@
 
   <div *ngIf="loading">Loading bookings...</div>
 
-  <div *ngIf="!loading && bookings.length === 0">
+  <div *ngIf="!loading && errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && bookings.length === 0">
     No bookings found.
   </div>
 
   <div class="booking-card" *ngFor="let booking of bookings">
-    <h3>{{ booking.cruiseName }}</h3>
-    <p><strong>Email:</strong> {{ booking.userEmail }}</p>
-    <p><strong>Status:</strong> {{ booking.status }}</p>
-    <p><strong>Total:</strong> ₹{{ booking.totalAmount }}</p>
+    <h3>{{ booking.cruise?.title || 'No Cruise Name' }}</h3>
+    <p><strong>Email:</strong> {{ booking.passengers?.[0]?.email || 'No Email' }}</p>
+    <p><strong>Status:</strong> {{ booking.status || 'Pending' }}</p>
+    <p><strong>Total:</strong> ₹{{ booking.totalAmount || 0 }}</p>
+    <p><strong>Reference:</strong> {{ booking.reference || '-' }}</p>
   </div>
 </div>

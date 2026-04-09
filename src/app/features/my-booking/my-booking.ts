@@ -5,7 +5,6 @@ import { BookingService } from '../../services/booking-service.service';
 
 @Component({
   selector: 'app-my-booking',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './my-booking.html',
   styleUrls: ['./my-booking.css']
@@ -13,6 +12,7 @@ import { BookingService } from '../../services/booking-service.service';
 export class MyBooking implements OnInit {
   bookings: any[] = [];
   loading = true;
+  errorMessage = '';
 
   constructor(
     private authService: AuthService,
@@ -20,12 +20,20 @@ export class MyBooking implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.user$.subscribe(user => {
-      if (user) {
-        this.bookingService.getUserBookings(user.uid).subscribe(data => {
-          this.bookings = data;
+    this.authService.user$.subscribe(async user => {
+      if (user?.email) {
+        this.loading = true;
+        this.errorMessage = '';
+
+        try {
+          this.bookings = await this.bookingService.getUserBookings(user.email);
+          console.log('Bookings:', this.bookings);
+        } catch (error) {
+          console.error('Error fetching bookings:', error);
+          this.errorMessage = 'Failed to load bookings.';
+        } finally {
           this.loading = false;
-        });
+        }
       } else {
         this.bookings = [];
         this.loading = false;

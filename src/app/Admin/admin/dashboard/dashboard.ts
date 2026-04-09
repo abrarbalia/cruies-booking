@@ -14,7 +14,7 @@ import { AdminDashboardService } from '../service/admin-dashboard.service';
     StatsCardsComponent,
     RecentBookingsComponent,
     CruiseStatusComponent,
-    ActiveOffersComponent,
+   
     CheckinSummaryComponent
   ],
   templateUrl: './dashboard.html'
