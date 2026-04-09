@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CruiseService } from '../../../services/cruise.service';
@@ -13,11 +13,6 @@ import { Router } from '@angular/router';
 })
 export class CruiseSearchBarComponent implements OnInit {
 
-  constructor(
-    private cruiseService: CruiseService,
-    private router: Router
-  ) {}
-
   destinations: string[] = [];
   ports: string[] = [];
   months: string[] = [];
@@ -28,31 +23,36 @@ export class CruiseSearchBarComponent implements OnInit {
   selectedMonth = '';
   selectedNights: number | null = null;
 
-  async ngOnInit() {
-    const data: any = await this.cruiseService.getSearchFilters();
+  loading = true;
 
-    this.destinations = data?.destinations || [];
-    this.ports = data?.ports || [];
-    this.months = data?.months || [];
-    this.nights = data?.nights || [];
+  constructor(
+    private cruiseService: CruiseService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  async ngOnInit() {
+    try {
+      const data: any = await this.cruiseService.getSearchFilters();
+      this.destinations = data.destinations || [];
+      this.ports = data.ports || [];
+      this.months = data.months || [];
+      this.nights = data.nights || [];
+    } catch (error) {
+      console.error('Failed to load search filters:', error);
+    } finally {
+      this.loading = false;
+      this.cdr.markForCheck(); // Force update for OnPush or async load
+    }
   }
 
   search() {
     const queryParams: any = {};
-
-    if (this.selectedDestination)
-      queryParams.destination = this.selectedDestination;
-
-    if (this.selectedPort)
-      queryParams.port = this.selectedPort;
-
-    if (this.selectedMonth)
-      queryParams.month = this.selectedMonth;
-
-    if (this.selectedNights !== null)
-      queryParams.nights = this.selectedNights;
+    if (this.selectedDestination) queryParams.destination = this.selectedDestination;
+    if (this.selectedPort) queryParams.port = this.selectedPort;
+    if (this.selectedMonth) queryParams.month = this.selectedMonth;
+    if (this.selectedNights !== null) queryParams.nights = this.selectedNights;
 
     this.router.navigate(['/cruises'], { queryParams });
   }
-
 }

@@ -25,6 +25,6 @@ export class CruiseCard {
   @Input() price!: string;
   @Input() viewing!: number;
   goToBooking() {
-  this.router.navigate(['/select-cabin', this.id]);
+  this.router.navigate(['/booking', this.id]);
 }
 }

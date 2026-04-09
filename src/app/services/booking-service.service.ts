@@ -1,21 +1,22 @@
-import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData, query, where, orderBy } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
-  private firestore = inject(Firestore);
+  async getUserBookings(userEmail: string): Promise<any[]> {
+    const bookingsRef = collection(db, 'bookings');
+    const querySnapshot = await getDocs(bookingsRef);
 
-  getUserBookings(userId: string): Observable<any[]> {
-    const bookingsRef = collection(this.firestore, 'bookings');
-    const q = query(
-      bookingsRef,
-      where('userId', '==', userId),
-      orderBy('createdAt', 'desc')
+    const bookings = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as any[];
+
+    return bookings.filter(booking =>
+      booking.passengers?.some((p: any) => p.email === userEmail)
     );
-
-    return collectionData(q, { idField: 'id' }) as Observable<any[]>;
   }
 }

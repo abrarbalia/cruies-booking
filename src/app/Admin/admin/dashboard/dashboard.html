@@ -1,7 +1,6 @@
 <div class="dashboard-container">
 
-  <!-- Stats Cards -->
-  <section class="stats-cards">
+  <section class="stats-cards" *ngIf="!loading">
     <app-stats-cards
       [totalCruises]="totalCruises"
       [totalUsers]="totalUsers"
@@ -10,8 +9,7 @@
     </app-stats-cards>
   </section>
 
-  <!-- Dashboard Widgets -->
-  <section class="dashboard-widgets">
+  <section class="dashboard-widgets" *ngIf="!loading">
 
     <div class="widget">
       <app-recent-bookings></app-recent-bookings>
@@ -22,13 +20,11 @@
     </div>
 
     <div class="widget">
-      <app-active-offers></app-active-offers>
-    </div>
-
-    <div class="widget">
       <app-checkin-summary></app-checkin-summary>
     </div>
 
   </section>
+
+  <div *ngIf="loading" class="loading">Loading dashboard...</div>
 
 </div>

@@ -13,7 +13,6 @@ import { User } from '@angular/fire/auth';
 })
 export class Navbar implements OnInit {
   currentUser: User | null = null;
-
   showRegister = false;
 
   constructor(
